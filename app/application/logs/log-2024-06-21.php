@@ -1,0 +1,84 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2024-06-21 17:12:59 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:12:59 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:14:40 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:14:40 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:17:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:17:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:18:19 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:18:19 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:21:34 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:21:34 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:30:47 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 17:30:47 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:11:59 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:11:59 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:11:59 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:12:10 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:12:10 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:12:10 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:12:10 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:15:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:15:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:15:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:15:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:53:56 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:53:56 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:56:05 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:56:05 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:58:11 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 20:58:11 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:05:49 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:05:49 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:10:50 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:10:50 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:16:04 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:16:04 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:18:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:18:21 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:18:37 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:18:37 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:18:53 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:18:53 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:18:53 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/models/Air_stations_model.php 124
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/models/Module_availability_model.php 37
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:01 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:09 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/controllers/Dashboard.php 229
+ERROR - 2024-06-21 21:19:09 --> Could not find the language line ""
+ERROR - 2024-06-21 21:19:11 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/controllers/Dashboard.php 229
+ERROR - 2024-06-21 21:19:11 --> Could not find the language line ""
+ERROR - 2024-06-21 21:19:15 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/controllers/Dashboard.php 229
+ERROR - 2024-06-21 21:19:15 --> Could not find the language line ""
+ERROR - 2024-06-21 21:19:17 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/controllers/Dashboard.php 229
+ERROR - 2024-06-21 21:19:17 --> Could not find the language line ""
+ERROR - 2024-06-21 21:19:20 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/controllers/Dashboard.php 229
+ERROR - 2024-06-21 21:19:20 --> Could not find the language line ""
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/models/Module_availability_model.php 37
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:19:25 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/models/Module_availability_model.php 37
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
+ERROR - 2024-06-21 21:25:08 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /var/www/html/application/helpers/general_helper.php 203
