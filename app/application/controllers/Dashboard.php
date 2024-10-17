@@ -78,26 +78,61 @@ class Dashboard extends MY_Controller {
 			}
         }
     }
-	
-	function view($id_proyecto = 0){
-		
-		$this->member_allowed($id_proyecto);
 
-		$view_data = array();
+    function view($id_proyecto = 0) {
+        // Verificar si el usuario tiene acceso al proyecto
+        $this->member_allowed($id_proyecto);
 
-		if($id_proyecto){
-			$this->session->set_userdata('project_context', $id_proyecto);
-		}
-		$id_cliente = $this->login_user->client_id;
-		
-		### GENERAR REGISTRO EN LOGS_MODEL ###
-		$this->Logs_model->add_log($this->login_user->client_id, NULL, NULL, NULL, 'Access_dashboard');
+        $view_data = array();
 
-		$sector = $this->Air_sectors_model->get_one(1); // Mina
-		$view_data["sector"] = $sector;
+        if($id_proyecto){
+            $this->session->set_userdata('project_context', $id_proyecto);
+        }
 
-		$stations = $this->Air_stations_model->get_details(array(
-			"ids" => CONST_ARRAY_NO_EYE3_STATIONS_IDS
+        $id_air_sector = $id_proyecto;
+
+        $id_cliente = $this->login_user->client_id;
+
+        ### GENERAR REGISTRO EN LOGS_MODEL ###
+        $this->Logs_model->add_log($this->login_user->client_id, NULL, NULL, NULL, 'Access_dashboard');
+
+        // Obtener el sector utilizando el id_proyecto
+        $sector = $this->Air_sectors_model->get_one($id_air_sector);
+        $view_data["sector"] = $sector;
+
+        // Filtrar estaciones por el sector (id_proyecto)
+        $stations = $this->Air_stations_model->get_details(array(
+            "id_air_sector" => $id_air_sector  // Usar el id_proyecto directamente para filtrar las estaciones
+        ))->result();
+
+        $view_data["stations"] = $stations;
+
+        // Cargar la vista con los datos
+        $this->template->rander("dashboard/client_dashboard", $view_data);
+    }
+
+
+    /*function view($id_proyecto = 0){
+
+        $this->member_allowed($id_proyecto);
+
+        $view_data = array();
+
+        if($id_proyecto){
+            $this->session->set_userdata('project_context', $id_proyecto);
+        }
+        $id_cliente = $this->login_user->client_id;
+
+        ### GENERAR REGISTRO EN LOGS_MODEL ###
+        $this->Logs_model->add_log($this->login_user->client_id, NULL, NULL, NULL, 'Access_dashboard');
+
+        $sector = $this->Air_sectors_model->get_one(1); // Mina
+        $view_data["sector"] = $sector;
+
+
+        $stations = $this->Air_stations_model->get_details(array(
+            "ids" => CONST_ARRAY_NO_EYE3_STATIONS_IDS
+            "id_air_sector" => $sector->id
 		))->result();
 
 		// ORDENAR EL ARREGLO DE OBJETOS DE ESTACIONES POR ID EN EL ORDEN SOLICITADO: array(2, 1, 3, 4, 13)
@@ -110,7 +145,7 @@ class Dashboard extends MY_Controller {
 		$view_data["stations"] = $stations;
 
 		$this->template->rander("dashboard/client_dashboard", $view_data);
-	}
+	}*/
 
 	/*Valida si usuario tiene permiso*/
 	function member_allowed($project_id){

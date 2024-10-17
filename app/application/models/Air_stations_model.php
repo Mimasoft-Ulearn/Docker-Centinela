@@ -59,7 +59,7 @@ class Air_stations_model extends Crud_model
      * @uses string $this->db->dbprefix('air_stations') tabla air_stations
      * @return object
      */
-    function get_details($options = array())
+    /*function get_details($options = array())
     {
 
         $air_stations_table = $this->db->dbprefix('air_stations');
@@ -133,11 +133,105 @@ class Air_stations_model extends Crud_model
 
         $sql = "SELECT $air_stations_table.*";
         $sql .= " FROM $air_stations_table";
-        $sql .= " WHERE $air_stations_table.deleted = 0";
+        $sql .= " WHERE $air_stations_table.deleted = 0 AND $air_stations_table.id_air_sector = $id_air_sector";
         $sql .= " $where";
 
         return $this->db->query($sql);
 
+    }*/
+
+    function get_details($options = array())
+    {
+        $air_stations_table = $this->db->dbprefix('air_stations');
+
+        $where = " WHERE $air_stations_table.deleted = 0"; // Iniciamos con el filtro de registros no eliminados
+
+        // Filtro por id
+        $id = get_array_value($options, "id");
+        log_message('error', "id primer log .$id");
+        if ($id) {
+            $where .= " AND $air_stations_table.id = $id";
+        }
+
+        // Filtro por id_client
+        $id_client = get_array_value($options, "id_client");
+        log_message('error', "id segundo log .$id_client");
+        if ($id_client) {
+            $where .= " AND $air_stations_table.id_client = $id_client";
+        }
+
+        // Filtro por id_project
+        $id_project = get_array_value($options, "id_project");
+        log_message('error', "id tercer log .$id_project");
+        if ($id_project) {
+            $where .= " AND $air_stations_table.id_project = $id_project";
+        }
+
+        // Filtro por id_air_sector
+        $id_air_sector = get_array_value($options, "id_air_sector");
+        log_message('error', "id tercer log $id_air_sector");
+        if ($id_air_sector) {
+            $where .= " AND $air_stations_table.id_air_sector = $id_air_sector";
+        }
+
+        // Filtro por id_air_record_type
+        $id_air_record_type = get_array_value($options, "id_air_record_type");
+        if ($id_air_record_type) {
+            $where .= " AND $air_stations_table.id_air_record_type = $id_air_record_type";
+        }
+
+        // Filtro por id_air_model
+        $id_air_model = get_array_value($options, "id_air_model");
+        if ($id_air_model) {
+            $where .= " AND $air_stations_table.id_air_model = $id_air_model";
+        }
+
+        // Filtro por is_active
+        if (isset($options['is_active'])) {
+            $is_active = $options['is_active'];
+            $where .= " AND $air_stations_table.is_active = $is_active";
+        }
+
+        // Filtro por is_monitoring
+        if (isset($options['is_monitoring'])) {
+            $is_monitoring = $options['is_monitoring'];
+            $where .= " AND $air_stations_table.is_monitoring = $is_monitoring";
+        }
+
+        // Filtro por created_by
+        $created_by = get_array_value($options, "created_by");
+        if ($created_by) {
+            $where .= " AND $air_stations_table.created_by = $created_by";
+        }
+
+        // Filtro por modified_by
+        $modified_by = get_array_value($options, "modified_by");
+        if ($modified_by) {
+            $where .= " AND $air_stations_table.modified_by = $modified_by";
+        }
+
+        // Filtro por array de ids
+        $ids = get_array_value($options, "ids");
+        if (!empty($ids) && is_array($ids)) {
+            $where .= " AND $air_stations_table.id IN (" . implode(",", $ids) . ")";
+        }
+
+        // Filtro por orden
+        $order_by = get_array_value($options, "order_by");
+        if (!empty($order_by) && is_array($order_by) && count($order_by) == 2) {
+            $field = $order_by[0]; // Campo por el cual se ordenará
+            $order = $order_by[1]; // ASC o DESC
+            $where .= " ORDER BY $air_stations_table.$field $order";
+        }
+
+        // Habilitar consultas grandes si es necesario
+        $this->db->query('SET SQL_BIG_SELECTS=1');
+
+        // Construcción de la consulta final
+        $sql = "SELECT $air_stations_table.* FROM $air_stations_table";
+        $sql .= $where;
+
+        return $this->db->query($sql);
     }
 
     /**

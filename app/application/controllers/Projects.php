@@ -1283,19 +1283,19 @@ class Projects extends MY_Controller {
 		
 	}
 
-	function create_project_folder($client_id_obj, $project_id_obj) {
+	function create_project_folder($client_id_obj, $project_id_obj){
 
-        $client_id = is_object($client_id_obj) ? $client_id_obj->id : $client_id_obj; 
+        $client_id = is_object($client_id_obj) ? $client_id_obj->id : $client_id_obj;
         $project_id = is_object($project_id_obj) ? $project_id_obj->id : $project_id_obj;
-        
-		if(!file_exists(__DIR__.'/../../files/mimasoft_files/client_'.$client_id.'/project_'.$project_id)) {
-			if(mkdir(__DIR__.'/../../files/mimasoft_files/client_'.$client_id.'/project_'.$project_id, 0777, TRUE)){
-				return true;
-			}else{
-				return false;
-			}
-		}
-	}
+
+        if (!file_exists(__DIR__ . '/../../files/mimasoft_files/client_' . $client_id . '/project_' . $project_id)) {
+            if (mkdir(__DIR__ . '/../../files/mimasoft_files/client_' . $client_id . '/project_' . $project_id, 0777, TRUE)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
     function get_infrastructure_type_options() {
 
@@ -1304,11 +1304,11 @@ class Projects extends MY_Controller {
         if (!$this->login_user->id) {
             redirect("forbidden");
         }
-        
+
         $html = '';
-        
+
         if($id_industria == 1){
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="tipo_infraestructura" class="col-md-3">'.lang('infrastructure_type').'</label>';
                 $html .= '<div class="col-md-9">';
@@ -1316,10 +1316,10 @@ class Projects extends MY_Controller {
                 $html .= '</div>';
             $html .= '</div>';
         }
-        
+
         echo $html;
     }
-    
+
     function get_infrastructure_type_fields() {
 
         $tipo_infraestructura = $this->input->post('tipo_infraestructura');
@@ -1328,18 +1328,18 @@ class Projects extends MY_Controller {
 
             redirect("forbidden");
         }
-        
+
         $html = '';
-        
+
         if($tipo_infraestructura == "Generación"){
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="tecnologia" class="col-md-3">'.lang('technology').'</label>';
                 $html .= '<div class="col-md-9">';
                 $html .= form_dropdown("technology", array("" => "-", "Eólica" => "Eólica", "Solar" => "Solar", "Minihidro" => "Minihidro", "Geotermica" => "Geotermica"), "", "id='tecnologia', class='select2 validate-hidden', data-rule-required='true', data-msg-required='" . lang('field_required') . "'");
                 $html .= '</div>';
             $html .= '</div>';
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="num_equipos_generacion" class="col-md-3">'.lang('number_of_generation_equipment').'</label>';
                 $html .= '<div class="col-md-9">';
@@ -1359,7 +1359,7 @@ class Projects extends MY_Controller {
                 ));
                 $html .= '</div>';
             $html .= '</div>';
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="potencia_unitaria_equipos" class="col-md-3">'.lang('unit_power_of_equipment').'</label>';
                 $html .= '<div class="col-md-9">';
@@ -1379,16 +1379,16 @@ class Projects extends MY_Controller {
                 $html .= '</div>';
             $html .= '</div>';
         }
-        
+
         if($tipo_infraestructura == "Elevación"){
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="tipo_subestacion_electrica" class="col-md-3">'.lang('electrical_substation_type').'</label>';
                 $html .= '<div class="col-md-9">';
                 $html .= form_dropdown("electrical_substation_type", array("" => "-", "Elevación" => "Elevación", "Interconexión" => "Interconexión"), "", "id='tipo_subestacion_electrica', class='select2 validate-hidden', data-rule-required='true', data-msg-required='" . lang('field_required') . "'");
                 $html .= '</div>';
             $html .= '</div>';
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="capacidad_transformacion" class="col-md-3">'.lang('transformation_capacity').'</label>';
                 $html .= '<div class="col-md-9">';
@@ -1407,11 +1407,11 @@ class Projects extends MY_Controller {
                 ));
                 $html .= '</div>';
             $html .= '</div>';
-            
+
         }
-        
+
         if($tipo_infraestructura == "Transmisión"){
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="num_torres_alta_tension" class="col-md-3">'.lang('number_of_high_voltage_towers').'</label>';
 
@@ -1432,7 +1432,7 @@ class Projects extends MY_Controller {
                 ));
                 $html .= '</div>';
             $html .= '</div>';
-            
+
             $html .= '<div class="form-group">';
                 $html .= '<label for="longitud_linea" class="col-md-3">'.lang('line_length').'</label>';
                 $html .= '<div class="col-md-9">';
@@ -1451,9 +1451,9 @@ class Projects extends MY_Controller {
                 ));
                 $html .= '</div>';
             $html .= '</div>';
-            
+
         }
-        
+
         echo $html;
     }
 
@@ -1492,7 +1492,7 @@ class Projects extends MY_Controller {
 
     function save_cloned_project() {
 
-        ini_set('max_execution_time', 300); //300 seconds 
+        ini_set('max_execution_time', 300); //300 seconds
 
         $project_id = $this->input->post('project_id');
 
@@ -1532,7 +1532,7 @@ class Projects extends MY_Controller {
 
 
         //add milestones
-        //when the new milestones will be created the ids will be different. so, we have to convert the milestone ids. 
+        //when the new milestones will be created the ids will be different. so, we have to convert the milestone ids.
         $milestones_array = array();
 
         if ($copy_milestones) {
@@ -1556,7 +1556,7 @@ class Projects extends MY_Controller {
         $tasks = $this->Tasks_model->get_all_where(array("project_id" => $project_id, "deleted" => 0))->result();
         foreach ($tasks as $task) {
 
-            //prepare new task data. 
+            //prepare new task data.
             $task->project_id = $new_project_id;
             $milestone_id = get_array_value($milestones_array, $task->milestone_id);
             $task->milestone_id = $milestone_id ? $milestone_id : "";
@@ -1607,19 +1607,19 @@ class Projects extends MY_Controller {
         if (!$this->can_delete_projects()) {
             redirect("forbidden");
         }
-		
+
         $id = $this->input->post('id');
 		$this->delete_cascade_project($id);
-		
+
         //if ($this->Projects_model->delete_project_and_sub_items($id)) {
-		if($this->Projects_model->delete($id)){	
-					
+		if($this->Projects_model->delete($id)){
+
 			$this->Project_members_model->delete_members($id);
 			$this->Project_rel_phases_model->delete_phases_rel_project($id);
 			$this->Project_rel_pu_model->delete_pu_rel_project($id);
 			$this->Project_rel_footprints_model->delete_footprints_rel_project($id);
 			$this->Project_rel_material_model->delete_materials_rel_project($id);
-			
+
             log_notification("project_deleted", array("project_id" => $id));
 
             echo json_encode(array("success" => true, 'message' => lang('record_deleted')));
@@ -1646,7 +1646,7 @@ class Projects extends MY_Controller {
         }
 
         $list_data = $this->Projects_model->get_details($options)->result();
-		
+
         $result = array();
         foreach ($list_data as $data) {
             $result[] = $this->_make_row($data, $custom_fields);
@@ -1760,7 +1760,7 @@ class Projects extends MY_Controller {
         if ($this->can_edit_projects()) {
             $optoins .= modal_anchor(get_uri("projects/view/" . $data->id), "<i class='fa fa-eye'></i>", array("class" => "edit", "title" => lang('view_project'), "data-post-id" => $data->id,"data-post-client_id" => $data->client_id));
         }
-        
+
         if ($this->can_edit_projects()) {
             $optoins .= modal_anchor(get_uri("projects/modal_form"), "<i class='fa fa-pencil'></i>", array("class" => "edit", "title" => lang('edit_project'), "data-post-id" => $data->id,"data-post-client_id" => $data->client_id));
         }
@@ -1797,7 +1797,7 @@ class Projects extends MY_Controller {
     }
 
     /* load project details view */
-    
+
     function view($project_id = 0) {
 
         //$project_id = $this->input->post('id');
@@ -1811,7 +1811,7 @@ class Projects extends MY_Controller {
                 $view_data['project'] = $this->Projects_model->get_one($project_id);
                 $view_data['cliente'] = $this->Clients_model->get_one($view_data['project_info']->client_id);
                 $view_data["miembros_de_proyecto"] = $this->Users_model->Users_model->get_users_of_project($project_id)->result_array();
-                // Vista fase 
+                // Vista fase
                 $view_data["project_rel_fases"] = $this->Project_rel_phases_model->get_one_where(array("id_proyecto" => $project_id));
                 $view_data['fase'] = $this->Phases_model->get_one_where(array('id' => $view_data["project_rel_fases"]->id_fase));
                 // vista PU
@@ -1828,11 +1828,11 @@ class Projects extends MY_Controller {
                 $view_data["huellas"] = $this->Footprints_model->get_footprints_of_project($project_id);
                 // vista Materiales
                 $view_data["materiales"] = $this->Materials_model->get_materials_of_project($project_id)->result();
-				
+
 				$view_data["pais"] = $this->Countries_model->get_one($view_data['project_info']->id_pais);
 
                 $this->load->view('projects/view', $view_data);
-                
+
             } else {
                 show_404();
             }
@@ -1840,7 +1840,7 @@ class Projects extends MY_Controller {
             show_404();
         }
     }
-    
+
     /* function view($project_id = 0, $tab = "") {
 
         $this->init_project_permission_checker($project_id);
@@ -1869,7 +1869,7 @@ class Projects extends MY_Controller {
 
 
         if ($this->login_user->user_type === "client") {
-            
+
             $view_data["show_timmer"] = false;
             $view_data["show_tasks"] = $this->can_view_tasks();
             $view_data["show_actions_dropdown"] = false;
@@ -1886,19 +1886,19 @@ class Projects extends MY_Controller {
     } */
 
     function get_footprints_of_meth(){
-    
+
         $id_metodologia = $this->input->post('id_metodologia');
         $footprint_methodology = $this->Footprints_model->get_footprints_of_methodology($id_metodologia)->result();
-		
+
         $array_huellas = array();
         if($footprint_methodology){
             foreach($footprint_methodology as $index => $huella){
                 $array_huellas[$huella->id] = $huella->nombre;
             }
         }
-        
-        $html = ''; 
-            
+
+        $html = '';
+
         // FILA POR DEFECTO
         $html .= '<div class="form-group">';
             $html .= '<label for="footprints" class="col-md-3">'.lang('footprints').'</label>';
@@ -1917,17 +1917,17 @@ class Projects extends MY_Controller {
 
     /* devolver la sigla de un proyecto (para formar codigo de formulario) */
     function get_sigla_of_project(){
-        
+
         $id_proyecto = $this->input->post('id_project');
         $proyecto = $this->Projects_model->get_one($id_proyecto);
         $sigla = $proyecto->sigla;
         echo $sigla;
-        
+
     }
-    
+
     /* devolver multiselect con los campos de un proyecto */
     function get_fields_of_project(){
-    
+
         $id_project = $this->input->post('id_project');
 
         if (!$this->login_user->id) {
@@ -1941,9 +1941,9 @@ class Projects extends MY_Controller {
                 $array_campos[$campo->id] = $campo->nombre;
             }
         }
-        
+
         $html = '';
-            
+
         // FILA POR DEFECTO
         $html .= '<div class="form-group">';
 
@@ -1960,13 +1960,13 @@ class Projects extends MY_Controller {
         }
 
     }
-	
+
 	/* devolver multiselect con los campos de un proyecto usado en formulario */
     function get_fields_of_project2(){
-    
+
         $id_project = $this->input->post('id_project');
 		$tipo_formulario = $this->input->post('tipo_formulario');
-	
+
         if (!$this->login_user->id) {
             redirect("forbidden");
         }
@@ -1975,9 +1975,9 @@ class Projects extends MY_Controller {
 			$campos = $this->Fields_model->get_fields_of_projects_where_not($id_project, array("id_tipo_campo" => 16))->result();
 		} else {
 			$campos = $this->Fields_model->get_all_where(array("id_proyecto" => $id_project, "deleted" => 0))->result();
-			
+
 		}
-		
+
 		//asort($campos);
         $array_campos = array();
         if($campos){
@@ -1989,7 +1989,7 @@ class Projects extends MY_Controller {
 		//sort($array_campos, SORT_STRING);
 		natcasesort($array_campos);
         $html = '';
-            
+
         // FILA POR DEFECTO
         $html .= '<div class="form-group">';
 
@@ -2008,11 +2008,11 @@ class Projects extends MY_Controller {
     }
 
 
-   
+
 
      /* muestra los Pu relacionados a la fase al agregar */
     function get_pu_phase(){
-    
+
         $fases = $this->input->post('fases');
         $pu_fase= $this->Unit_processes_model->get_unit_processes_of_phase($fases)->result();
 
@@ -2025,7 +2025,7 @@ class Projects extends MY_Controller {
 
 
         $html = '';
-            
+
         // FILA POR DEFECTO
         $html .= '<div class="form-group">';
             $html .= '<label for="pu" class="col-md-3">'.lang('unit_processes').'</label>';
@@ -2042,7 +2042,7 @@ class Projects extends MY_Controller {
         }
 
     }
-    
+
 
     /* prepare project info data for reuse */
 
@@ -2150,7 +2150,7 @@ class Projects extends MY_Controller {
                     $view_data["task_" . $status->status] = $status->total;
                 }
             }
-            
+
             $view_data['custom_fields_list'] = $this->Custom_fields_model->get_combined_details("projects", $project_id, $this->login_user->is_admin, $this->login_user->user_type)->result();
 
             $this->load->view('projects/overview_for_client', $view_data);
@@ -3018,19 +3018,19 @@ class Projects extends MY_Controller {
 
         $this->load->view("projects/tasks/index", $view_data);
     }
-    
-    
+
+
     /* get list of milestones for filter */
     function get_milestones_for_filter(){
-        
+
         $this->access_only_team_members();
         $project_id = $this->input->post("project_id");
         if($project_id){
             echo $this->_get_milestones_dropdown_list($project_id);
         }
-        
+
     }
-    
+
 
     private function _get_milestones_dropdown_list($project_id = 0) {
         $milestones = $this->Milestones_model->get_all_where(array("project_id" => $project_id, "deleted" => 0))->result();
@@ -4145,9 +4145,9 @@ class Projects extends MY_Controller {
 
         echo json_encode(array("success" => true, 'message' => lang('settings_updated')));
     }
-	
+
 	private function delete_cascade_project($project_id){
-		
+
 		//ELIMINA RELACIONAMIENTOS
 		$rules = $this->Rule_model->get_all_where(array("id_proyecto" => $project_id, "deleted" => 0))->result();
 		if($rules){
@@ -4155,7 +4155,7 @@ class Projects extends MY_Controller {
 				$this->Rule_model->delete($rule->id);
 			}
 		}
-		
+
 		$assignments = $this->Assignment_model->get_all_where(array("id_proyecto" => $project_id, "deleted" => 0))->result();
 		if($assignments){
 			foreach($assignments as $assignment){
@@ -4164,7 +4164,7 @@ class Projects extends MY_Controller {
 					foreach($assignments_combinations as $assig_comb){
 						$this->Assignment_combinations_model->delete($assig_comb->id);
 					}
-				}	
+				}
 				$this->Assignment_model->delete($assignment->id);
 			}
 		}
@@ -4173,9 +4173,9 @@ class Projects extends MY_Controller {
 		if($calculations){
 			foreach($calculations as $calculation){
 				$this->Calculation_model->delete($calculation->id);
-			}	
+			}
 		}
-		
+
 		//ELIMINA FORMULARIOS, REALCION_PROYECTO_FORMULARIO Y VALORES FORMULARIOS
 		$form_rel_project_model = $this->Form_rel_project_model->get_all_where(array("id_proyecto" => $project_id, "deleted" => 0))->result();
 		if($form_rel_project_model){
@@ -4187,28 +4187,28 @@ class Projects extends MY_Controller {
 						$this->Form_values_model->delete($fv->id);
 					}
 				}
-				
+
 				$campos_rel_formulario = $this->Field_rel_form_model->get_all_where(array("id_formulario" => $frpm->id_formulario, "deleted" => 0))->result();
 				if($campos_rel_formulario){
 					foreach($campos_rel_formulario as $crf){
 						$this->Field_rel_form_model->delete($crf->id);
 					}
 				}
-				
+
 				$form_rel_materiales = $this->Form_rel_material_model->get_all_where(array("id_formulario" => $frpm->id_formulario, "deleted" => 0))->result();
 				if($form_rel_materiales){
 					foreach($form_rel_materiales as $form_rel_material){
 						$this->Form_rel_material_model->delete($form_rel_material->id);
 					}
 				}
-				
+
 				$form_rel_materiales_rel_categorias = $this->Form_rel_materiales_rel_categorias_model->get_all_where(array("id_formulario" => $frpm->id_formulario, "deleted" => 0))->result();
 				if($form_rel_materiales_rel_categorias){
 					foreach($form_rel_materiales_rel_categorias as $form_rel_material_rel_categoria){
 						$this->Form_rel_materiales_rel_categorias_model->delete($form_rel_material_rel_categoria->id);
 					}
 				}
-				
+
 				$this->Forms_model->delete($frpm->id_formulario);
 				$this->Form_rel_project_model->delete($frpm->id);
 
@@ -4218,7 +4218,7 @@ class Projects extends MY_Controller {
 		//ELIMINA UNIDADES FUNCIONALES
 		$functional_unit = $this->Functional_units_model->get_all_where(array("id_proyecto" => $project_id, "deleted" => 0))->result();
 		if($functional_unit){
-			foreach($functional_unit as $fn){	
+			foreach($functional_unit as $fn){
 				$this->Functional_units_model->delete($fn->id);
 			}
 		}
@@ -4226,23 +4226,23 @@ class Projects extends MY_Controller {
 		//ELIMINA COMPROMISOS
 		$compromise = $this->Compromises_rca_model->get_one_where(array("id_proyecto" => $project_id, "deleted" => 0));
 		if($compromise->id){
-			
+
 			$evaluated_compromises = $this->Evaluated_rca_compromises_model->get_all_where(array("id_compromiso" => $compromise->id ,"deleted" => 0))->result();
 			if($evaluated_compromises){
 				foreach($evaluated_compromises as $evaluated_compromise){
 					$this->Evaluated_rca_compromises_model->delete($evaluated_compromise->id);
 				}
 			}
-			
+
 			$compromises_rel_fields = $this->Compromises_rca_rel_fields_model->get_all_where(array("id_compromiso" => $compromise->id ,"deleted" => 0))->result();
 			if($compromises_rel_fields){
 				foreach($compromises_rel_fields as $compromises_rel_field){
 					$this->Compromises_rca_rel_fields_model->delete($compromises_rel_field->id);
 				}
 			}
-			
+
 			$values_compromises = $this->Values_compromises_rca_model->get_all_where(array("id_compromiso" => $compromise->id , "deleted" => 0))->result();
-			
+
 			if($values_compromises){
 				foreach($values_compromises as $values_compromise){
 
@@ -4262,23 +4262,23 @@ class Projects extends MY_Controller {
 					$this->Values_compromises_rca_model->delete($values_compromise->id);
 				}
 			}
-			
+
 			$this->Compromises_rca_model->delete($compromise->id);
-			
+
 		}
-		
+
 		$compromise = $this->Compromises_reportables_model->get_one_where(array("id_proyecto" => $project_id, "deleted" => 0));
 		if($compromise->id){
-			
+
 			$compromises_rel_fields = $this->Compromises_reportables_rel_fields_model->get_all_where(array("id_compromiso" => $compromise->id ,"deleted" => 0))->result();
 			if($compromises_rel_fields){
 				foreach($compromises_rel_fields as $compromises_rel_field){
 					$this->Compromises_reportables_rel_fields_model->delete($compromises_rel_field->id);
 				}
 			}
-			
+
 			$values_compromises = $this->Values_compromises_reportables_model->get_all_where(array("id_compromiso" => $compromise->id , "deleted" => 0))->result();
-			
+
 			if($values_compromises){
 				foreach($values_compromises as $values_compromise){
 
@@ -4298,29 +4298,29 @@ class Projects extends MY_Controller {
 					$this->Values_compromises_reportables_model->delete($values_compromise->id);
 				}
 			}
-			
+
 			$this->Compromises_reportables_model->delete($compromise->id);
-			
+
 		}
 
 		//ELIMINA PERMISOS
 		$permitting = $this->Permitting_model->get_one_where(array("id_proyecto" => $project_id, "deleted" => 0));
 		if($permitting->id){
-			
+
 			$permitting_rel_fields = $this->Permitting_rel_fields_model->get_all_where(array("id_permiso" => $permitting->id, "deleted" => 0))->result();
 			if($permitting_rel_fields){
 				foreach($permitting_rel_fields as $permitting_rel_field){
 					$this->Permitting_rel_fields_model->delete($permitting_rel_field->id);
 				}
 			}
-			
+
 			$evaluated_permittings = $this->Evaluated_permitting_model->get_all_where(array("id_permiso" => $permitting->id, "deleted" => 0))->result();
 			if($evaluated_permittings){
 				foreach($evaluated_permittings as $evaluated_permitting){
 					$this->Evaluated_permitting_model->delete($evaluated_permitting->id);
-				}	
+				}
 			}
-			
+
 			$values_permitting = $this->Values_permitting_model->get_all_where(array("id_permiso" => $permitting->id, "deleted" => 0))->result();
 			if($values_permitting){
 				foreach($values_permitting as $value_permitting){
@@ -4342,21 +4342,21 @@ class Projects extends MY_Controller {
 				}
 			}
 			$this->Permitting_model->delete($permitting->id);
-			
+
 		}
-		
+
 		//ELIMINA COMUNIDADES
 		//ELIMINA ACUERDOS
 		$agreement_matrix_config = $this->Agreements_matrix_config_model->get_one_where(array("id_proyecto" => $project_id, "deleted" => 0));
 		if($agreement_matrix_config->id){
-			
+
 			$agreements_rel_fields = $this->Agreements_rel_fields_model->get_all_where(array("id_agreement_matrix_config" => $agreement_matrix_config->id, "deleted" => 0))->result();
 			if($agreements_rel_fields){
 				foreach($agreements_rel_fields as $agreement_rel_field){
 					$this->Agreements_rel_fields_model->delete($agreement_rel_field->id);
 				}
 			}
-			
+
 			$values_agreements = $this->Values_agreements_model->get_all_where(array("id_agreement_matrix_config" =>$agreement_matrix_config->id ,"deleted" => 0))->result();
 			if($values_agreements){
 				foreach($values_agreements as $value_agreement){
@@ -4378,9 +4378,9 @@ class Projects extends MY_Controller {
 				}
 			}
 			$this->Agreements_matrix_config_model->delete($agreement_matrix_config->id);
-		
+
 		}
-		
+
 		//ELIMINA FEEDBACK
 		$feedback_matrix_config = $this->Feedback_matrix_config_model->get_one_where(array("id_proyecto" => $project_id, "deleted" => 0));
 		if($feedback_matrix_config->id){
@@ -4413,9 +4413,9 @@ class Projects extends MY_Controller {
 				}
 			}
 			$this->Feedback_matrix_config_model->delete($feedback_matrix_config->id);
-			
+
 		}
-		
+
 		//ELIMINA STAKEHOLDERS
 		$stakeholder_matrix_config = $this->Stakeholders_matrix_config_model->get_one_where(array("id_proyecto" => $project_id, "deleted" => 0));
 		if($stakeholder_matrix_config->id){
@@ -4434,7 +4434,7 @@ class Projects extends MY_Controller {
 				}
 			}
 			$this->Stakeholders_matrix_config_model->delete($stakeholder_matrix_config->id);
-			
+
 		}
 
 		//ELIMINA UMBRALES
@@ -4454,7 +4454,7 @@ class Projects extends MY_Controller {
 				if($client_indicators){
 					foreach($client_indicators as $client_indicator){
 						$this->Client_indicators_model->delete($client_indicator->id);
-					}	
+					}
 				}
 				$this->Indicators_model->delete($indicator->id);
 			}
@@ -4472,7 +4472,7 @@ class Projects extends MY_Controller {
 		if($reports_configuration){
 			foreach($reports_configuration as $report_configuration){
 				$this->Reports_configuration_model->delete($report_configuration->id);
-			}	
+			}
 		}
 
 		$modules_availabilitys = $this->Module_availability_model->get_all_where(array("id_proyecto" => $project_id, "deleted" => 0))->result();
@@ -4511,7 +4511,7 @@ class Projects extends MY_Controller {
 				$this->Fields_model->delete($field->id);
 			}
 		}
-		
+
 		//ELIMINA OTROS
 		$client_environmental_footprints_settings = $this->Client_environmental_footprints_settings_model->get_all_where(array("id_proyecto" => $project_id ,"deleted" => 0))->result();
 		if($client_environmental_footprints_settings){
@@ -4547,15 +4547,15 @@ class Projects extends MY_Controller {
 				$this->Client_permitting_settings_model->delete($client_permitting_setting->id);
 			}
 		}
-		
+
 		//
-		
+
 		// Elimina KPI Valores
 		$kpi_valores = $this->KPI_Values_model->get_all_where(array(
 			"id_proyecto" => $project_id,
 			"deleted" => 0
 		))->result();
-		
+
 		foreach($kpi_valores as $valor){
 			$kpi_valores_condicion = $this->KPI_Values_condition_model->get_all_where(array(
 				"id_kpi_valores" => $valor->id,
@@ -4574,23 +4574,23 @@ class Projects extends MY_Controller {
 			"id_proyecto" => $project_id,
 			"deleted" => 0
 		))->result();
-		
+
 		foreach($kpi_reportes as $reporte){
 			$this->KPI_Report_structure_model->delete($reporte->id);
 		}
-		
+
 		// Elimina KPI Gráficos
 		$kpi_graficos = $this->KPI_Charts_structure_model->get_all_where(array(
 			"id_proyecto" => $project_id,
 			"deleted" => 0
 		))->result();
-		
+
 		foreach($kpi_graficos as $grafico){
 			$this->KPI_Charts_structure_model->delete($grafico->id);
 		}
 
 	}
-	
+
 	function create_form_folder($client_id, $project_id, $form_id) {
 		if(!file_exists(__DIR__.'/../../files/mimasoft_files/client_'.$client_id.'/project_'.$project_id.'/form_'.$form_id)) {
 			if(mkdir(__DIR__.'/../../files/mimasoft_files/client_'.$client_id.'/project_'.$project_id.'/form_'.$form_id, 0777, TRUE)){
@@ -4600,15 +4600,15 @@ class Projects extends MY_Controller {
 			}
 		}
 	}
-	
+
 	private function guardar_estructura_reporte_kpi($opciones_reporte_kpi = array()){
-		
+
 		$id_cliente = get_array_value($opciones_reporte_kpi, "id_cliente");
 		$id_fase = get_array_value($opciones_reporte_kpi, "id_fase");
 		$id_proyecto = get_array_value($opciones_reporte_kpi, "id_proyecto");
-		
+
 		if($id_fase == "2"){
-			
+
 			$datos = array(
 				"construction_sites_considered" 	=> array(
 														"valor" => "",
@@ -4718,13 +4718,13 @@ class Projects extends MY_Controller {
 														"codigo" => "D34",
 														"descripcion" => lang("desc_no_biodegradable_oil"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"dielectric_oil" 			=> array(
 														"valor" => "",
 														"codigo" => "D35",
 														"descripcion" => lang("desc_dielectric_oil"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"other_oil" 					=> array(
 														"valor" => "",
 														"codigo" => "D36",
@@ -4748,37 +4748,37 @@ class Projects extends MY_Controller {
 														"codigo" => "D191",
 														"descripcion" => lang("desc_of_which_reused_on_site"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"of_which_contaminated_ground_rehab" 		=> array(
 														"valor" => "",
 														"codigo" => "D192",
 														"descripcion" => lang("desc_of_which_contaminated_ground_rehab"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"concrete_bricks_mortar" 	=> array(
 														"valor" => "",
 														"codigo" => "D194",
 														"descripcion" => lang("desc_concrete_bricks_mortar"),
 														"unidad" => "3" // m3
-												   ),								   									   
+												   ),
 				"aggregates_demolition" 			=> array(
 														"valor" => "",
 														"codigo" => "D195",
 														"descripcion" => lang("desc_aggregates_demolition"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"structures_demolition" 		=> array(
 														"valor" => "",
 														"codigo" => "D196",
 														"descripcion" => lang("desc_structures_demolition"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"ui_drinking_water" 					=> array(
 														"valor" => "",
 														"codigo" => "D41",
 														"descripcion" => lang("desc_ui_drinking_water"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"ui_non_potable_water_surface" 		=> array(
 														"valor" => "",
 														"codigo" => "D39",
@@ -4790,43 +4790,43 @@ class Projects extends MY_Controller {
 														"codigo" => "D40",
 														"descripcion" => lang("desc_ui_non_potable_water_well"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"ui_non_potable_water_rain" 		=> array(
 														"valor" => "",
 														"codigo" => "D201",
 														"descripcion" => lang("desc_ui_non_potable_water_rain"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"ui_non_potable_water_plants_ext" 	=> array(
 														"valor" => "",
 														"codigo" => "D202",
 														"descripcion" => lang("desc_ui_non_potable_water_plants_ext"),
 														"unidad" => "3" // m3
-												   ),								   												   
+												   ),
 				"ui_non_potable_water_plants_site" 	=> array(
 														"valor" => "",
 														"codigo" => "D203",
 														"descripcion" => lang("desc_ui_non_potable_water_plants_site"),
 														"unidad" => "3" // m3
-												   ),								   												   
+												   ),
 				"uc_drinking_water" 					=> array(
 														"valor" => "",
 														"codigo" => "D200",
 														"descripcion" => lang("desc_uc_drinking_water"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"uc_non_potable_water_surface" 		=> array(
 														"valor" => "",
 														"codigo" => "D198",
 														"descripcion" => lang("desc_uc_non_potable_water_surface"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"uc_non_potable_water_well" 			=> array(
 														"valor" => "",
 														"codigo" => "D199",
 														"descripcion" => lang("desc_uc_non_potable_water_well"),
 														"unidad" => "3" // m3
-												   ),								   												   
+												   ),
 				"uc_non_potable_water_rain" 		=> array(
 														"valor" => "",
 														"codigo" => "D201",
@@ -4838,86 +4838,86 @@ class Projects extends MY_Controller {
 														"codigo" => "D202",
 														"descripcion" => lang("desc_uc_non_potable_water_plants_ext"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"uc_non_potable_water_plants_site" 	=> array(
 														"valor" => "",
 														"codigo" => "D203",
 														"descripcion" => lang("desc_uc_non_potable_water_plants_site"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"accidental_spills" 		=> array(
 														"valor" => "",
 														"codigo" => "D59",
 														"descripcion" => lang("desc_accidental_spills"),
 														"unidad" => "3" // m3
-												   ),								   
+												   ),
 				"significant_events" 		=> array(
 														"valor" => "",
 														"codigo" => "D175",
 														"descripcion" => lang("desc_significant_events"),
 														"unidad" => "18" // Unidad
-												   ),								   
+												   ),
 				"np_waste_production" 		=> array(
 														"valor" => "",
 														"codigo" => "D100",
 														"descripcion" => lang("desc_np_waste_production"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"np_waste_recycling" 		=> array(
 														"valor" => "",
 														"codigo" => "D101",
 														"descripcion" => lang("desc_np_waste_recycling"),
 														"unidad" => "1" // t
-												   ),								   								   
+												   ),
 				"np_reused_waste" 		=> array(
 														"valor" => "",
 														"codigo" => "D102",
 														"descripcion" => lang("desc_np_reused_waste"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"p_waste_production" 				=> array(
 														"valor" => "",
 														"codigo" => "D152",
 														"descripcion" => lang("desc_p_waste_production"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"p_waste_recycling" 		=> array(
 														"valor" => "",
 														"codigo" => "D153",
 														"descripcion" => lang("desc_p_waste_recycling"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"p_reused_waste" 		=> array(
 														"valor" => "",
 														"codigo" => "-",
 														"descripcion" => lang("desc_p_reused_waste"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"occupied_surface_construction" 	=> array(
 														"valor" => "",
 														"codigo" => "D159",
 														"descripcion" => lang("desc_occupied_surface_construction"),
 														"unidad" => "14" // ha
-												   ),		
+												   ),
 				"total_co2_offset" 				=> array(
 														"valor" => "",
 														"codigo" => "-",
 														"descripcion" => lang("desc_total_co2_offset"),
 														"unidad" => "1" // t
-												   ),								   
+												   ),
 				"n_biodiversity_projects" 	=> array(
 														"valor" => "",
 														"codigo" => "-",
 														"descripcion" => lang("desc_n_biodiversity_projects"),
 														"unidad" => "18" // Unidad
-												   ),								   
-												   						   								   							   							   								   							   							  										   
+												   ),
+
 			);
-			
+
 		}
 
 		if($id_fase == "3"){
-			
+
 			$datos = array(
 				"installed_capacity"				=> array(
 															"valor" => "",
@@ -4930,20 +4930,20 @@ class Projects extends MY_Controller {
 															"codigo" => "2",
 															"descripcion" => lang("desc_n_gen_wind_turbine"),
 															"unidad" => "18" // Unidad
-													   ),								 
-												 
+													   ),
+
 				"occupied_surface"				=> array(
 															"valor" => "",
 															"codigo" => "3",
 															"descripcion" => lang("desc_occupied_surface"),
 															"unidad" => "14" // ha
-													   ),								 
+													   ),
 				"operating_hours"				=> array(
 															"valor" => "",
 															"codigo" => "4",
 															"descripcion" => lang("desc_operating_hours"),
 															"unidad" => "17" // hrs
-													   ),								 										 
+													   ),
 				"network_electricity_consumption"					=> array(
 															"valor" => "",
 															"codigo" => "5",
@@ -4967,38 +4967,38 @@ class Projects extends MY_Controller {
 															"codigo" => "8",
 															"descripcion" => lang("desc_petroleum_diesel"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"gasoline" 							=> array(
 															"valor" => "",
 															"codigo" => "9",
 															"descripcion" => lang("desc_gasoline"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"glp" 								=> array(
 															"valor" => "",
 															"codigo" => "10",
 															"descripcion" => lang("desc_glp"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"natural_gas" 						=> array(
 															"valor" => "",
 															"codigo" => "11",
 															"descripcion" => lang("desc_natural_gas"),
 															//"unidad" => "3" // m3
 															"unidad" => "25" // m3 x 10^3
-													   ),								   
+													   ),
 				"biodiesel_alcohol" 				=> array(
 															"valor" => "",
 															"codigo" => "12",
 															"descripcion" => lang("desc_biodiesel_alcohol"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"sf6_present_on_plant" 			=> array(
 															"valor" => "",
 															"codigo" => "13",
 															"descripcion" => lang("desc_sf6_present_on_plant"),
 															"unidad" => "4" // l
-													   ),								   
+													   ),
 				"biodegradable_oil" 					=> array(
 															"valor" => "",
 															"codigo" => "14",
@@ -5016,25 +5016,25 @@ class Projects extends MY_Controller {
 															"codigo" => "16",
 															"descripcion" => lang("desc_dielectric_oil"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"oil_containing_pcb" 					=> array(
 															"valor" => "",
 															"codigo" => "17",
 															"descripcion" => lang("desc_oil_containing_pcb"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"others_no_biodegradable_oils" 			=> array(
 															"valor" => "",
 															"codigo" => "18",
 															"descripcion" => lang("desc_others_no_biodegradable_oils"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"decrease_oil_good_practices" 		=> array(
 															"valor" => "",
 															"codigo" => "19",
 															"descripcion" => lang("desc_decrease_oil_good_practices"),
 															"unidad" => "4" // l
-													   ),								   
+													   ),
 				"waste_production_np" 			=> array(
 															"valor" => "",
 															"codigo" => "20",
@@ -5046,55 +5046,55 @@ class Projects extends MY_Controller {
 															"codigo" => "21",
 															"descripcion" => lang("desc_np_recycled_waste"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"dangerous_waste_production" 			=> array(
 															"valor" => "",
 															"codigo" => "22",
 															"descripcion" => lang("desc_dangerous_waste_production"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"dangerous_waste_recycled" 	=> array(
 															"valor" => "",
 															"codigo" => "23",
 															"descripcion" => lang("desc_dangerous_waste_recycled"),
 															"unidad" => "1" // t
-													   ),								   
+													   ),
 				"drinking_water_consumption_river" 				=> array(
 															"valor" => "",
 															"codigo" => "25",
 															"descripcion" => lang("desc_drinking_water_consumption_river"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"drinking_water_consumption_well" 				=> array(
 															"valor" => "",
 															"codigo" => "26",
 															"descripcion" => lang("desc_drinking_water_consumption_well"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"drinking_water_consumption_plants" 			=> array(
 															"valor" => "",
 															"codigo" => "27",
 															"descripcion" => lang("desc_drinking_water_consumption_plants"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"drinking_water_consumption_wastewater_treatment_plant" 			=> array(
 															"valor" => "",
 															"codigo" => "28",
 															"descripcion" => lang("desc_drinking_water_consumption_wastewater_treatment_plant"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"drinking_water_consumption_system_harvest" 			=> array(
 															"valor" => "",
 															"codigo" => "29",
 															"descripcion" => lang("desc_drinking_water_consumption_system_harvest"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"non_potable_water_consumption_river" 				=> array(
 															"valor" => "",
 															"codigo" => "25",
 															"descripcion" => lang("desc_non_potable_water_consumption_river"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"non_potable_water_consumption_well" 			=> array(
 															"valor" => "",
 															"codigo" => "26",
@@ -5106,25 +5106,25 @@ class Projects extends MY_Controller {
 															"codigo" => "27",
 															"descripcion" => lang("desc_non_potable_water_consumption_plants_water"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"non_potable_water_consumption_plants_res_water" => array(
 															"valor" => "",
 															"codigo" => "28",
 															"descripcion" => lang("desc_non_potable_water_consumption_plants_res_water"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"non_potable_water_consumption_system_harvest" 			=> array(
 															"valor" => "",
 															"codigo" => "29",
 															"descripcion" => lang("desc_non_potable_water_consumption_system_harvest"),
 															"unidad" => "3" // m3
-													   ),								   
+													   ),
 				"n_biodiversity_projects" 		=> array(
 															"valor" => "",
 															"codigo" => "30",
 															"descripcion" => lang("desc_n_biodiversity_projects"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"n_dead_birds" 					=> array(
 															"valor" => "",
 															"codigo" => "31",
@@ -5202,31 +5202,31 @@ class Projects extends MY_Controller {
 															"codigo" => "43",
 															"descripcion" => lang("desc_noise_levels_near_population"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"sustainable_actions_plant" 				=> array(
 															"valor" => "",
 															"codigo" => "44",
 															"descripcion" => lang("desc_sustainable_actions_plant"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"n_donated_solutions" 					=> array(
 															"valor" => "",
 															"codigo" => "45",
 															"descripcion" => lang("desc_n_donated_solutions"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"n_beneficiaries_donated_solutions" 			=> array(
 															"valor" => "",
 															"codigo" => "46",
 															"descripcion" => lang("desc_n_beneficiaries_donated_solutions"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"n_people_from_local_communities" 				=> array(
 															"valor" => "",
 															"codigo" => "47",
 															"descripcion" => lang("desc_n_people_from_local_communities"),
 															"unidad" => "18" // Unidad
-													   ),	
+													   ),
 				"expenses_local_suppliers" 				=> array(
 															"valor" => "",
 															"codigo" => "48",
@@ -5238,13 +5238,13 @@ class Projects extends MY_Controller {
 															"codigo" => "49",
 															"descripcion" => lang("desc_opex_total"),
 															"unidad" => "18" // Unidad
-													   ),									   
+													   ),
 				"environmental_expenses" 				=> array(
 															"valor" => "",
 															"codigo" => "50",
 															"descripcion" => lang("desc_environmental_expenses"),
 															"unidad" => "18" // Unidad
-													   ),									   
+													   ),
 				"enel_hours_worked" 			=> array(
 															"valor" => "",
 															"codigo" => "51",
@@ -5257,13 +5257,13 @@ class Projects extends MY_Controller {
 															"codigo" => "52",
 															"descripcion" => lang("desc_enel_accidents"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"enel_first_aid" 				=> array(
 															"valor" => "",
 															"codigo" => "53",
 															"descripcion" => lang("desc_enel_first_aid"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"enel_near_miss" 					=> array(
 															"valor" => "",
 															"codigo" => "54",
@@ -5276,14 +5276,14 @@ class Projects extends MY_Controller {
 															"descripcion" => lang("desc_enel_lost_days"),
 															//"unidad" => "18" // Unidad
 															"unidad" => "16" // Días
-													   ),								   
+													   ),
 				"contractor_hours_worked" 			=> array(
 															"valor" => "",
 															"codigo" => "51",
 															"descripcion" => lang("desc_contractor_hours_worked"),
 															//"unidad" => "18" // Unidad
 															"unidad" => "17" // Horas
-													   ),									   
+													   ),
 				"contractor_accidents" 				=> array(
 															"valor" => "",
 															"codigo" => "52",
@@ -5295,26 +5295,26 @@ class Projects extends MY_Controller {
 															"codigo" => "53",
 															"descripcion" => lang("desc_contractor_first_aid"),
 															"unidad" => "18" // Unidad
-													   ),								   
+													   ),
 				"contractor_near_miss" 				=> array(
 															"valor" => "",
 															"codigo" => "54",
 															"descripcion" => lang("desc_contractor_near_miss"),
 															"unidad" => "18" // Unidad
-													   ),									   
+													   ),
 				"contractor_lost_days" 			=> array(
 															"valor" => "",
 															"codigo" => "55",
 															"descripcion" => lang("desc_contractor_lost_days"),
 															//"unidad" => "18" // Unidad
 															"unidad" => "16" // Días
-													   ),								   
-												   
-												   									   								   							   								   
+													   ),
+
+
 			);
-			
+
 		}
-		
+
 		$data_registro_kpi = array(
 			"id_cliente" => $id_cliente,
 			"id_fase" => $id_fase,
@@ -5325,18 +5325,18 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_registro_kpi = $this->KPI_Report_structure_model->save($data_registro_kpi);
-				
-		
+
+
 	}
-	
+
 	private function guardar_estructura_graficos_kpi($opciones_grafico_kpi = array()){
-		
+
 		$id_cliente = get_array_value($opciones_grafico_kpi, "id_cliente");
 		$id_fase = get_array_value($opciones_grafico_kpi, "id_fase");
 		$id_proyecto = get_array_value($opciones_grafico_kpi, "id_proyecto");
-		
+
 		// Gráficos por proyecto
-		
+
 		// 1
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5354,7 +5354,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 2
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5373,7 +5373,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 3
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5392,7 +5392,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 4
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5411,7 +5411,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 5
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5429,7 +5429,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 6
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5447,7 +5447,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 7
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5466,7 +5466,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 8
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5485,7 +5485,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 9
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5503,7 +5503,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 10
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5521,7 +5521,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 11
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5539,7 +5539,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 12
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5557,7 +5557,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 13
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5576,7 +5576,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 14
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5594,8 +5594,8 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
-		
+
+
 		// Gráficos entre proyectos
 
 		// 1
@@ -5614,7 +5614,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 2
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5633,7 +5633,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 3
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5650,7 +5650,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 4
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5668,7 +5668,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 5
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5685,7 +5685,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 6
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5702,7 +5702,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 7
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5719,7 +5719,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 8
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5737,7 +5737,7 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 		// 9
 		$data_grafico_kpi = array(
 			"id_cliente" => $id_cliente,
@@ -5755,67 +5755,67 @@ class Projects extends MY_Controller {
 			"created" => get_current_utc_time()
 		);
 		$save_data_grafico_kpi = $this->KPI_Charts_structure_model->save($data_grafico_kpi);
-		
+
 	}
-	
+
 	function move_project_content_file_to_temp(){
-		
+
 		if (!empty($_FILES)) {
-			
+
 			$array_files = array();
-			
+
 			foreach($_FILES as $index => $_file){
-				
+
 				$file = $_file['tmp_name'];
 				$file_name = uniqid("file")."-".$_file['name'];
 
 				if (!is_valid_file_to_upload($file_name)){
 					return false;
 				}
-				
+
 				$target_path = getcwd() . "/" . get_setting("temp_file_path") . "project_content_files/";
-				
+
 				if (!is_dir($target_path)) {
 					if (!mkdir($target_path, 0777, true)) {
 						die('Failed to create file folders.');
 					}
 				}
-				
+
 				$target_file = $target_path . $file_name;
 				copy($file, $target_file);
-				
+
 				$array_files[] = array("file_name" => $file_name);
-				
+
 			}
-		
+
 			echo json_encode($array_files);
-			
+
 		}
 
 	}
-	
+
 	function delete_project_content_file_from_temp($file_name){
 		$file_path = $this->input->post("file_path");
 		delete_file_from_directory($file_path);
 	}
-	
+
 	function save_project_content_file($file_path_temp, $file_path_project, $file_name){
-				
+
 		$target_path = getcwd() . '/' . $file_path_project;
 		if (!is_dir($target_path)) {
 			if (!mkdir($target_path, 0777, true)) {
 				die('Failed to create file folders.');
 			}
 		}
-		
+
 		$target_file_temp = getcwd() . "/" . $file_path_temp . $file_name;
 		$target_file = $target_path . $file_name;
 		$save_file = rename($target_file_temp, $target_file);
-		
+
 		return $save_file;
- 
+
 	}
-	
+
 }
 
 
