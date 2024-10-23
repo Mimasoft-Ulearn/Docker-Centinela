@@ -488,7 +488,7 @@
                         "deleted" => 0
                     ))->result();
                     $sidebar_menu[] = array("name" => "report_centinela", "url" => "report_centinela", "controller" => "report_centinela", "class" => "fa fa-check-square-o");
-
+                    $sidebar_menu[] = array("name" => "report_monitoring", "url" => "report_centinela_monitoring", "controller" => "report_centinela_monitoring", "class" => "fa fa-check-square-o");
 
 					// MÓDULO CONDICIONES METEOROLÓGICAS
 					$array_air_meteorological_conditions_submenu = array();

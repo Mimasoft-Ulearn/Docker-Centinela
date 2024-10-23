@@ -10,6 +10,7 @@ $lang["no_matches_found"] = "No se encontraron resultados";
 
 // BOTONES LEFT MENU
 $lang["report_centinela"] = "Reporte Centinela";
+$lang["report_monitoring"] = "Reporte Monitoreo";
 
 /* highcharts */
 $lang["resetZoom"] = "Vista inicial";
