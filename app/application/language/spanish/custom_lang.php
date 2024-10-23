@@ -8,6 +8,9 @@ $lang["language_locale_long"] = "es-ES"; //long locale code
 $lang["loading..."] = "Cargando...";
 $lang["no_matches_found"] = "No se encontraron resultados";
 
+// BOTONES LEFT MENU
+$lang["report_centinela"] = "Reporte Centinela";
+
 /* highcharts */
 $lang["resetZoom"] = "Vista inicial";
 $lang["resetZoomTitle"] = "Cambia a la vista inicial del gráfico";

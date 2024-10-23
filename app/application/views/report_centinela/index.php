@@ -3,7 +3,7 @@
 	<?php if ($puede_ver != 3) { ?>
 
 		<nav class="breadcrumb">
-			<a class="breadcrumb-item" href="<?php echo get_uri("report_mlp"); ?>"><?php echo lang("report_mlp"); ?> /</a>
+			<a class="breadcrumb-item" href="<?php echo get_uri("report_centinela"); ?>"><?php echo lang("report_centinela"); ?> /</a>
 
 		</nav>
 

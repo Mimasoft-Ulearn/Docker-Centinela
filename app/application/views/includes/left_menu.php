@@ -479,8 +479,16 @@
 					if($array_modulos[19] == 1){ 
 						if($air_sectors && $forecast_comparison_option != 3){
 							$sidebar_menu[] = array("name" => "air_forecast_comparison", "url" => "air_forecast_comparison", "controller" => "air_forecast_comparison", "class" => "fa fa-bar-chart");
-						}
+                        }
 					}
+
+                    // Modulo Reportes centinela
+                    $air_sectors = $this->Air_sectors_model->get_all_where(array(
+                        "id_project" => $this->session->project_context,
+                        "deleted" => 0
+                    ))->result();
+                    $sidebar_menu[] = array("name" => "report_centinela", "url" => "report_centinela", "controller" => "report_centinela", "class" => "fa fa-check-square-o");
+
 
 					// MÓDULO CONDICIONES METEOROLÓGICAS
 					$array_air_meteorological_conditions_submenu = array();

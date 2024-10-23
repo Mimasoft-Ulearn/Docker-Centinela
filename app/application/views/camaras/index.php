@@ -3,7 +3,7 @@
 	<?php if ($puede_ver != 3) { ?>
 
 		<nav class="breadcrumb">
-			<a class="breadcrumb-item" href="<?php echo get_uri("camaras"); ?>"><?php echo lang("report_mlp"); ?> /</a>
+			<a class="breadcrumb-item" href="<?php echo get_uri("camaras"); ?>"><?php echo lang("report_centinela"); ?> /</a>
 
 		</nav>
 		<div id="alert_camara" class="alert alert-info  alert-dismissible fade in" role="alert">

@@ -2,7 +2,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Report_mlp extends MY_Controller
+class Report_centinela extends MY_Controller
 {
 
 	/**
@@ -22,8 +22,8 @@ class Report_mlp extends MY_Controller
 		parent::__construct();
 		$this->init_permission_checker("client");
 
-		$this->id_modulo_cliente = 14;
-		$this->id_submodulo_cliente = 28;
+		$this->id_modulo_cliente = 17;
+		$this->id_submodulo_cliente = 31;
 
 		$id_cliente = $this->login_user->client_id;
 		$id_proyecto = $this->session->project_context;
@@ -50,9 +50,9 @@ class Report_mlp extends MY_Controller
 
 		$project = $this->Projects_model->get_one($air_sector->id_project);
 		$view_data["project_info"] = $project;
-    $view_data["iframe_src"] = "https://particulas.shinyapps.io/Reporte_MLP_Semanal/";
+        $view_data["iframe_src"] = "https://particulas.shinyapps.io/centinela_analytics/";
     
-		$this->template->rander("report_mlp/index", $view_data);
+		$this->template->rander("report_centinela/index", $view_data);
 	}
 }
  
