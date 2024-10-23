@@ -43,24 +43,11 @@ services:
     container_name: mysql-centinela
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      # MYSQL_DATABASE: promimairemlp_fc
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: 6wkWY&LZ=zjvT8g
-    ports:
-      - '3306:3306'
+
     networks:
       - app-network
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-centinela
-    environment:
-      PMA_HOST: db
-      UPLOAD_LIMIT: 2048M
-    ports:
-      - '8082:80'
-    networks:
-      - app-network
+
 volumes:
   db_data:
 networks:

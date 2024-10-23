@@ -23,8 +23,3 @@ RUN yum update -y --nogpgcheck && \
 # Configurar la zona horaria
 ENV TZ=America/Santiago
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-
-
-# Exponer el puerto 3306
-EXPOSE 3306
