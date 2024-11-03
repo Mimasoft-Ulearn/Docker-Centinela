@@ -1,5 +1,7 @@
 <?php
 
+/* Camaras */
+$lang["camera_forecasts"] = "Camaras";
 /* language locale */
 $lang["language_locale"] = "es"; //locale code
 $lang["language_locale_long"] = "es-ES"; //long locale code

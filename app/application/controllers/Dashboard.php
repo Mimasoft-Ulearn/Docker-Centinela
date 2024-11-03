@@ -107,8 +107,10 @@ class Dashboard extends MY_Controller {
 
         $view_data["stations"] = $stations;
 
-        // Cargar la vista con los datos
-        $this->template->rander("dashboard/client_dashboard", $view_data);
+
+//        // Cargar la vista con los datos
+//        $this->template->rander("dashboard/client_dashboard", $view_data);
+        redirect("air_monitoring_charts");
     }
 
 

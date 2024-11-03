@@ -397,7 +397,7 @@
 						$array_modulos[$modulo->id_modulo_cliente] = $modulo->available;
  					}
 					
-                    $sidebar_menu[] = array("name" => "dashboard", "url" => "dashboard/view/".$this->session->project_context, "class" => "fa-desktop");
+//                    $sidebar_menu[] = array("name" => "dashboard", "url" => "dashboard/view/".$this->session->project_context, "class" => "fa-desktop");
                     // $sidebar_menu[] = array("name" => "project_info", "url" => "project_info", "class" => "fa-info-circle");
 					
 					// MÓDULO HUELLAS AMBIENTALES
@@ -426,7 +426,7 @@
 							$array_registros_submenu[] = array("name" => "feeders", "url" => "feeders", "class" => "fa-table", "controller" => "feeders");
 						}
 						if($array_modulos[4] == 1 && $or_option != 3){
-							$array_registros_submenu[] = array("name" => "other_records", "url" => "other_records", "class" => "fa-th-list", "controller" => "other_records");
+//							$array_registros_submenu[] = array("name" => "other_records", "url" => "other_records", "class" => "fa-th-list", "controller" => "other_records");
 						}
 					}
 					
@@ -443,19 +443,7 @@
 						"deleted" => 0
 					))->result();
 
-					// $array_forecast_submenu = array();
-					// foreach($air_sectors as $sector){
-					// 	// Encriptado de $sector->id
-					// 	$id_sector_encrypt = urlencode($this->encrypt->encode($sector->id));
-					// 	//$array_forecast_submenu[] = array("name" => $sector->name, "url" => "air_forecast_sectors/index/?p=".$id_sector_encrypt, "controller" => "air_forecast_sectors", "param" => $id_sector_encrypt);
-					// 	$array_forecast_submenu[] = array("name" => $sector->name, "url" => "air_forecast_sectors/index/".$id_sector_encrypt, "controller" => "air_forecast_sectors", "param" => $id_sector_encrypt);
-					// }
 
-					// if($array_modulos[14] == 1){ 
-					// 	if($air_sectors && $air_sec_option != 3){
-					// 		$sidebar_menu[] = array("name" => "forecasts", "url" => "#", "class" => "fa-sun", "submenu" => $array_forecast_submenu);
-					// 	}
-					// }
 					if($array_modulos[14] == 1){ 
 						foreach($air_sectors as $sector){
 							// Encriptado de $sector->id
@@ -489,8 +477,9 @@
                     ))->result();
                     $sidebar_menu[] = array("name" => "report_centinela", "url" => "report_centinela", "controller" => "report_centinela", "class" => "fa fa-check-square-o");
                     $sidebar_menu[] = array("name" => "report_monitoring", "url" => "report_centinela_monitoring", "controller" => "report_centinela_monitoring", "class" => "fa fa-check-square-o");
+                    $sidebar_menu[] = array("name" => "camera_forecasts","url"=> "camaras", "controller" => "camaras", "class" => "fa fa-camera");
 
-					// MÓDULO CONDICIONES METEOROLÓGICAS
+                    // MÓDULO CONDICIONES METEOROLÓGICAS
 					$array_air_meteorological_conditions_submenu = array();
 					if($array_modulos[20] == 1){ // MÓDULO CONDICIONES METEOROLÓGICAS
 						if($air_upload_images_option != 3){ // SUBMÓDULO VER IMAGENES
@@ -659,26 +648,26 @@
 
 
 					// ADMINISTRACIÓN CLIENTE MIMAIRE
- 					if($array_modulos[15] == 1){ 
+ 					if($array_modulos[15] == 1){
 						if($cma_option != 3){ // SUBMÓDULO CARGA MASIVA AIRE
-							$customer_administrator_air_submenu[] = array("name" => "setting_bulk_load_air", "url" => "air_setting_bulk_load", "controller" => "air_setting_bulk_load");
+							//$customer_administrator_air_submenu[] = array("name" => "setting_bulk_load_air", "url" => "air_setting_bulk_load", "controller" => "air_setting_bulk_load");
 						}
 						if($cdsa_option != 3){ // SUBMÓDULO CARGA DE DATOS SINÓPTICOS
-							$customer_administrator_air_submenu[] = array("name" => "synoptic_data_upload", "url" => "air_synoptic_data_upload", "controller" => "air_synoptic_data_upload");
+							//$customer_administrator_air_submenu[] = array("name" => "synoptic_data_upload", "url" => "air_synoptic_data_upload", "controller" => "air_synoptic_data_upload");
 						}
 						if($dma_option != 3){ // SUBMÓDULO DESCARGA MASIVA AIRE
-							$customer_administrator_air_submenu[] = array("name" => "setting_bulk_download_air", "url" => "air_setting_bulk_download", "controller" => "air_setting_bulk_download");
+							//$customer_administrator_air_submenu[] = array("name" => "setting_bulk_download_air", "url" => "air_setting_bulk_download", "controller" => "air_setting_bulk_download");
 						}
 					}
 						if($air_fcp_option != 3){ // SUBMÓDULO FORZAR CORREO DE PRONÓSTICOS
-							$customer_administrator_air_submenu[] = array("name" => "force_sending_forecast_alert", "url" => "air_force_sending_forecast_alert", "controller" => "air_force_sending_forecast_alert");
+							//$customer_administrator_air_submenu[] = array("name" => "force_sending_forecast_alert", "url" => "air_force_sending_forecast_alert", "controller" => "air_force_sending_forecast_alert");
 						}
 					}
-					
 
-                    if(!($array_modulos[15] == 0)){ 
+
+                    if(!($array_modulos[15] == 0)){
 						if (!empty($customer_administrator_air_submenu)){
-							$sidebar_menu[] = array("name" => "customer_administrator_air", "url" => "customer_administrator_air", "class" => "fa fa-cogs","submenu" => $customer_administrator_air_submenu);	
+							$sidebar_menu[] = array("name" => "customer_administrator_air", "url" => "customer_administrator_air", "class" => "fa fa-cogs","submenu" => $customer_administrator_air_submenu);
 						}
 					}
 
@@ -686,315 +675,7 @@
 
                 }
 				
-                /*if(!$this->session->project_context){
-                    	
-						$modulos = $this->Client_module_availability_model->get_client_setting($this->login_user->client_id)->result();
-						$array_modulos = array();
-						foreach ($modulos as $modulo){
-							$array_modulos[$modulo->id_modulo] = $modulo->disponible;
-						}
-						
-						$help_knowledge_base_menues = array();
-						
-						if($array_modulos[1] == 1){ // MÓDULO AYUDA Y SOPORTE
-							$help_knowledge_base_menues[] = array("name" => "faq", "url" => "faq", "controller" => "faq"); // SUBMÓDULO FAQ
-							$help_knowledge_base_menues[] = array("name" => "wiki", "url" => "wiki", "controller" => "wiki"); //SUBMÓDULO GLOSARIO
-							$help_knowledge_base_menues[] = array("name" => "what_is_mimasoft", "url" => "what_is_mimasoft", "controller" => "what_is_mimasoft"); // SUBMÓDULO ¿QUE ES MIMASOFT?
-							$help_knowledge_base_menues[] = array("name" => "contact", "url" => "contact", "controller" => "contact"); //SUBMÓDULO CONTACTO
-						}
-						
-                        $sidebar_menu = array(
-                            array("name" => "projects", "url" => "inicio_projects", "controller" => "inicio_projects", "class" => "fa fa-th-large")
-                        );
-						
-						if(!($array_modulos[1] == 0)){
-							$sidebar_menu[] = array("name" => "help_and_support", "url" => "help", "class" => "fa-question-circle",
-								"submenu" => $help_knowledge_base_menues
-							);
-						}
 
-                }else{
-
-					//Verifico si el contenido del módulo es visible para el usuario, si no lo es, se esconde el menú.
-					$user = $this->Users_model->get_one($this->session->user_id);
-					$profile_id = $user->id_profile;
-					$clients_modules_rel_profiles = $this->Clients_modules_rel_profiles_model->get_all_where(array("id_profile" => $profile_id))->result();
-					
-					foreach($clients_modules_rel_profiles as $rel){
-						
-						if($rel->id_client_submodule){
-							
-							if($rel->id_client_submodule == 1){ // SUBMÓDULO UNIDADES FUNCIONALES (HUELLAS AMBIENTALES)
-								$uf_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 2){ // SUBMÓDULO PROCESOS UNITARIOS (HUELLAS AMBIENTALES)
-								$pu_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 3){ // SUBMÓDULO CUMPLIMIENTO DE COMPROMISOS (COMPROMISOS)
-								$cump_comp_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 4){ // SUBMÓDULO EVALUACIÓN DE CUMPLIMIENTO (COMPROMISOS)
-								$eval_cump_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 5){ // SUBMÓDULO TRAMITACIÓN DE PERMISOS (PERMISOS)
-								$tramit_perm_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 6){ // SUBMÓDULO EVALUACIÓN DE PERMISOS (PERMISOS)
-								$eval_perm_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 7){ // SUBMÓDULO RESUMEN (RESIDUOS)
-								$waste_summary_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 8){ // SUBMÓDULO DETALLE (RESIDUOS)
-								$waste_details_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 9){ // SUBMÓDULO INDICADORES (RESIDUOS)
-								$waste_indicators_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 10){ // SUBMÓDULO RESUMEN (COMUNIDADES)
-								$communities_summary_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 11){ // SUBMÓDULO STAKEHOLDERS (COMUNIDADES)
-								$communities_stakeholders_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 12){ // SUBMÓDULO ACUERDOS (COMUNIDADES)
-								$communities_agreements_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 13){ // SUBMÓDULO SEGUIMIENTO DE ACUERDOS (COMUNIDADES)
-								$communities_agreements_monitoring_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 14){ // SUBMÓDULO FEEDBACK (COMUNIDADES)
-								$communities_feedback_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 15){ // SUBMÓDULO SEGUIMIENTO DE FEEDBACK (COMUNIDADES)
-								$communities_feedback_monitoring_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 16){ // SUBMÓDULO FAQ (AYUDA Y SOPORTE)
-								$faq_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 17){ // SUBMÓDULO GLOSARIO (AYUDA Y SOPORTE)
-								$wiki_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 18){ // SUBMÓDULO ¿QUÉ ES MIMASOFT? (AYUDA Y SOPORTE)
-								$what_mima_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 19){ // SUBMÓDULO CONTACTO (AYUDA Y SOPORTE)
-								$contact_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 20){ // SUBMÓDULO CONFIGURACIÓN PANEL PRINCIPAL (ADMINISTRACIÓN CLIENTE)
-								$config_pp_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 21){ // SUBMÓDULO CARGA MASIVA (ADMINISTRACIÓN CLIENTE)
-								$cm_option = $rel->ver;
-							}
-							if($rel->id_client_submodule == 22){ // SUBMÓDULO COMPROMISOS REPORTABLES
-								$rep_comp_option = $rel->ver;
-							}
-							
-						} else {
-							
-							if($rel->id_client_module == 2){ // REGISTROS AMBIENTALES
-								$ra_option = $rel->ver;
-							}
-							if($rel->id_client_module == 3){ // MANTENEDORAS
-								$fe_option = $rel->ver;
-							}
-							if($rel->id_client_module == 4){ // OTROS REGISTROS
-								$or_option = $rel->ver;
-							}
-							if($rel->id_client_module == 5){ // REPORTES
-								$rep_option = $rel->ver;
-							}
-							
-						}
-
-					}
-					
-					// DISPONIBILIDAD DE MÓDULOS
-					$modulos = $this->Module_availability_model->get_project_setting($this->login_user->client_id, $this->session->project_context)->result();		
-					$array_modulos = array();
-					foreach ($modulos as $modulo){
-						$array_modulos[$modulo->id_modulo_cliente] = $modulo->available;
- 					}
-					
-                    $sidebar_menu = array(
-                        array("name" => "projects", "url" => "inicio_projects", "url" =>"inicio_projects",  "class" => "fa fa fa-th-large"),
-                    );
-					
-                    $sidebar_menu[] = array("name" => "dashboard", "url" => "dashboard/view/".$this->session->project_context, "class" => "fa-desktop");
-                    $sidebar_menu[] = array("name" => "project_info", "url" => "project_info", "class" => "fa-info-circle");
-					
-					// MÓDULO HUELLAS AMBIENTALES
-                    $environmental_footprints_submenu = array();
-					
-					if($array_modulos[1] == 1){ 
-						if($uf_option != 3){ // SUBMÓDULO UNIDADES FUNCIONALES
-							$environmental_footprints_submenu[] = array("name" => "functional_units", "url" => "functional_units", "controller" => "functional_units"); 
-						}
-						if($pu_option != 3){ // SUBMÓDULO PROCESOS UNITARIOS
-							$environmental_footprints_submenu[] = array("name" => "unit_processes", "url" => "unit_processes", "controller" => "unit_processes");
-						}
-					}
-					
-					if(!($array_modulos[1] == 0)){
-						if(!empty($environmental_footprints_submenu))
-						$sidebar_menu[] = array("name" => "environmental_footprints", "url" => "environmental_footprints", "class" => "fa-shoe-prints","submenu" => $environmental_footprints_submenu);
-					}
-
-					if($array_modulos[2] == 1){ // MÓDULO REGISTROS AMBIENTALES
-						if($ra_option != 3)
-						$sidebar_menu[] = array("name" => "environmental_records", "url" => "environmental_records", "class" => "fa-leaf");
-					}
-					
-					if($array_modulos[3] == 1){ // MÓDULO MANTENEDORAS
-						if($fe_option != 3)
-						$sidebar_menu[] = array("name" => "feeders", "url" => "feeders", "class" => "fa-table");
-					}
-					
-					if($array_modulos[4] == 1){ // MÓDULO OTROS REGISTROS
-						if($or_option != 3)
-						 $sidebar_menu[] = array("name" => "other_records", "url" => "other_records", "class" => "fa-th-list");
-					}
-
-					if($array_modulos[5] == 1){ // MÓDULO REPORTES
-						if($rep_option != 3)
-						$sidebar_menu[] = array("name" => "reports", "url" => "reports", "class" => "fa-line-chart");
-					}
-
-                    // MÓDULO COMPROMISOS
-					$compromises_submenu = array();
-					
-					if($array_modulos[6] == 1){ 
-						if($cump_comp_option != 3){ // SUBMÓDULO CUMPLIMIENTO DE COMPROMISOS
-							$compromises_submenu[] = array("name" => "compromises_compliance", "url" => "compromises_compliance_client", "controller" => "compromises_compliance_client");
-						}
-						if($eval_cump_option != 3){
-							$compromises_submenu[] = array("name" => "compromises_rca_evaluation", "url" => "compromises_rca_evaluation", "controller" => "compromises_rca_evaluation");
-						}
-						
-						if($rep_comp_option != 3){
-							$compromises_submenu[] = array("name" => "compromises_reportables_evaluation", "url" => "compromises_reportables_evaluation", "controller" => "compromises_reportables_evaluation");
-						}
-					}
-					
-					if(!($array_modulos[6] == 0)){
-						if(!empty($compromises_submenu))
-						$sidebar_menu[] = array("name" => "compromises", "url" => "#", "class" => "fa fa-handshake-o", "submenu" => $compromises_submenu);
-					}
-					
-					// MÓDULO PERMISOS	
-					$permitting_submenu = array();
-					
-					if($array_modulos[7] == 1){ 
-						if($tramit_perm_option != 3){ // SUBMÓDULO TRAMITACION DE PERMISOS
-							$permitting_submenu[] = array("name" => "permittings_procedure", "url" => "permitting_procedure_client", "controller" => "permitting_procedure_client");
-						}
-						if($eval_perm_option != 3){ // SUBMÓDULO EVALUACIÓN DE PERMISOS
-							$permitting_submenu[] = array("name" => "permittings_evaluation", "url" => "permitting_procedure_evaluation", "controller" => "permitting_procedure_evaluation");
-						}
-					}
-					
-					if(!($array_modulos[7] == 0)){
-						if(!empty($permitting_submenu))
-						$sidebar_menu[] = array("name" => "permittings", "url" => "#", "class" => "fa fa-file-signature", "submenu" => $permitting_submenu);
-					}
-					
-					// MÓDULO RESIDUOS
-					$waste_submenu = array();
-					
-					if($array_modulos[8] == 1){
-						if($waste_summary_option != 3){ // SUBMÓDULO RESUMEN
-							$waste_submenu[] = array("name" => "summary", "url" => "waste_summary", "controller" => "waste_summary");
-						}
-						if($waste_details_option != 3){ // SUBMÓDULO DETALLE
-							$waste_submenu[] = array("name" => "detail", "url" => "client_waste_detail", "controller" => "client_waste_detail");
-						}
-						if($waste_indicators_option != 3){ // SUBMÓDULO INDICADORES
-							$waste_submenu[] = array("name" => "indicators", "url" => "client_indicators", "controller" => "client_indicators");
-						}
-					}
-					
-					if(!($array_modulos[8] == 0)){
-						if(!empty($waste_submenu))
-						$sidebar_menu[] = array("name" => "waste", "url" => "#", "class" => "fa fa-exclamation-triangle", "submenu" => $waste_submenu);
-					}
-					
-					// MÓDULO COMUNIDADES
-					$communities_submenu = array();
-	
-					if($array_modulos[9] == 1){
-						if($communities_summary_option != 3){ // SUBMÓDULO RESUMEN 
-							$communities_submenu[] = array("name" => "summary", "url" => "communities_agreements_summary", "controller" => "communities_agreements_summary");
-						}
-						if($communities_stakeholders_option != 3){ // SUBMÓDULO STAKEHOLDERS 
-							$communities_submenu[] = array("name" => "stakeholders", "url" => "communities_stakeholders", "controller" => "communities_stakeholders");
-						}
-						if($communities_agreements_option != 3){ // SUBMÓDULO ACUERDOS 
-							$communities_submenu[] = array("name" => "agreements", "url" => "communities_agreements", "controller" => "communities_agreements");
-						}
-						if($communities_agreements_monitoring_option != 3){ // SUBMÓDULO SEGUIMIENTO ACUERDOS 
-							$communities_submenu[] = array("name" => "agreements_monitoring", "url" => "agreements_monitoring", "controller" => "agreements_monitoring");
-						}
-						if($communities_feedback_option != 3){ // SUBMÓDULO FEEDBACK 
-							$communities_submenu[] = array("name" => "feedback", "url" => "communities_feedback", "controller" => "communities_feedback");
-						}
-						if($communities_feedback_monitoring_option != 3){ // SUBMÓDULO SEGUIMIENTO FEEDBACK 
-							$communities_submenu[] = array("name" => "feedback_monitoring", "url" => "feedback_monitoring", "controller" => "feedback_monitoring");
-						}
-					}
-					
-					if(!($array_modulos[9] == 0)){
-						if(!empty($communities_submenu))
-						$sidebar_menu[] = array("name" => "communities", "url" => "#", "class" => "fa fa-users", "submenu" => $communities_submenu);
-					}
-					
-					// MÓDULO AYUDA Y SOPORTE
-					$help_and_support_submenu = array();
-					
-					if($array_modulos[10] == 1){
-						if($faq_option != 3){ // SUBMÓDULO FAQ
-							$help_and_support_submenu[] = array("name" => "faq", "url" => "faq", "controller" => "faq");
-						}
-						if($wiki_option != 3){ // SUBMÓDULO GLOSARIO
-							$help_and_support_submenu[] = array("name" => "wiki", "url" => "wiki", "controller" => "wiki");
-						}
-						if($what_mima_option != 3){ // SUBMÓDULO ¿QUE ES MIMASOFT?
-							$help_and_support_submenu[] = array("name" => "what_is_mimasoft", "url" => "what_is_mimasoft", "controller" => "what_is_mimasoft");
-						}
-						if($contact_option != 3){ // SUBMÓDULO CONTACTO
-							$help_and_support_submenu[] = array("name" => "contact", "url" => "contact", "controller" => "contact");
-						}
-					}
- 					
-					if(!($array_modulos[10] == 0)){
-						if (!empty($help_and_support_submenu))
-						$sidebar_menu[] = array("name" => "help_and_support", "url" => "help_and_support", "class" => "fa fa-question-circle","submenu" => $help_and_support_submenu);
-					}
-					
-					//ADMINISTRACION CLIENTE
-					$customer_administrator_submenu = array();
-					
-					if($array_modulos[11] == 1){ 
-						if($config_pp_option != 3){ //CONFIGURACION PANEL PRINCIPAL
-							$customer_administrator_submenu[] = array("name" => "setting_dashboard", "url" => "setting_dashboard", "controller" => "setting_dashboard");
-						}
-						if($cm_option != 3){ // SUBMÓDULO CARGA MASIVA
-							$customer_administrator_submenu[] = array("name" => "setting_bulk_load", "url" => "setting_bulk_load", "controller" => "setting_bulk_load");
-						}
-					}
-
-                    if(!($array_modulos[11] == 0)){ 
-						if (!empty($customer_administrator_submenu))
-						$sidebar_menu[] = array("name" => "customer_administrator", "url" => "customer_administrator", "class" => "fa fa-cogs","submenu" => $customer_administrator_submenu);	
-					}
- 
-                }*/
-                
-            
-            
-            //$ci = & get_instance();
-            //$controller_name = strtolower(get_class($ci));
-            //var_dump($sidebar_menu);
             foreach ($sidebar_menu as $main_menu) {
                 $submenu = get_array_value($main_menu, "submenu");
                 $expend_class = $submenu ? " expand " : "";

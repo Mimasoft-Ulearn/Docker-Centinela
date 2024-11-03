@@ -28,9 +28,9 @@ class Camaras extends MY_Controller
 		$id_cliente = $this->login_user->client_id;
 		$id_proyecto = $this->session->project_context;
 
-		if ($id_proyecto) {
-			$this->block_url($id_cliente, $id_proyecto, $this->id_modulo_cliente);
-		}
+//		if ($id_proyecto) {
+//			$this->block_url($id_cliente, $id_proyecto, $this->id_modulo_cliente);
+//		}
 	}
 
 	function index()
@@ -50,7 +50,7 @@ class Camaras extends MY_Controller
 
 		$project = $this->Projects_model->get_one($air_sector->id_project);
 		$view_data["project_info"] = $project;
-    $view_data["iframe_src"] = 'https://localhost/external'; // apunta a nuestra pagina que es procesada por nginx
+        $view_data["iframe_src"] = 'https://appstream2.us-east-1.aws.amazon.com/userpools#/signin?ref=73JEiK8o2m'; // apunta a nuestra pagina que es procesada por nginx
     
 		$this->template->rander("camaras/index", $view_data);
 	}
