@@ -1,12 +1,12 @@
 <ul class="nav nav-tabs" role="tablist">
 
-    <?php if($id_station != 9 && $id_station != 16){ ?>
+
         <li class="active">
             <a data-toggle="tab" href="#tab_1_min_<?php echo $id_station; ?>"><?php echo lang("records_per_minute"); ?></a>
         </li>
-    <?php } ?>
+
     
-    <li class="<?php echo ($id_station == 9 || $id_station == 16) ? "active" : ""; ?>">
+    <li >
         <a data-toggle="tab" href="#tab_5_min_<?php echo $id_station; ?>"><?php echo lang("records_per_5_minutes"); ?></a>
     </li>
 
@@ -26,7 +26,7 @@
 
         <!-- PESTAÑA DE REGISTROS CADA 1 MINUTO -->
 
-        <?php if($id_station != 9 && $id_station != 16){ ?>
+
 
         <div id="tab_1_min_<?php echo $id_station; ?>" class="tab-pane fade in active">
             <div class="col-md-12 p0">
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <?php } ?>
+
 
         <!-- PESTAÑA DE REGISTROS CADA 5 MINUTOS -->
         <div id="tab_5_min_<?php echo $id_station; ?>" class="tab-pane fade in <?php echo ($id_station == 9 || $id_station == 16) ? "active" : ""; ?>">
@@ -363,7 +363,7 @@
         // Dentro de este loop se crean los gráficos, funciones para filtrar por fecha y para actualizar los gráficos cada 1 minuto. Esto es para cada "frecuencia" y variable.
         <?php foreach($array_charts_data as $time_range => $chart_data) { ?>
 
-            <?php if ( ($id_station == 9 || $id_station == 16) && $time_range == "1min") { continue; } ?>
+
 
             <?php foreach($station_variables as $variable){ ?>
 
