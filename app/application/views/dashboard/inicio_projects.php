@@ -52,7 +52,7 @@
 							//$end_date = $proyecto->deadline * 1 ? time_date_zone_format($proyecto->deadline, $proyecto->id) : "-";
 							$start_date = $proyecto->start_date * 1 ? $proyecto->start_date : "-";
 							$end_date = $proyecto->deadline * 1 ? $proyecto->deadline : "-";
-							$descripcion = $proyecto->description ? $proyecto->description : "-";
+							//$descripcion = $proyecto->description ? $proyecto->description : "-";
 							$status = $proyecto->status ? $proyecto->status : "-";
 							
 							if($status == "open"){
@@ -91,7 +91,7 @@
 											$html .= '</div>';
 											$html .= '<div class="col-md-7">';
 												// $html .= '<h3>'.$tecnologia.'</h3>';
-												$html .= '<h3>'.$client_info->company_name.'</h3>';
+												//$html .= '<h3>'.$client_info->company_name.'</h3>';
 												$html .= '<p class="project_desc" style="text-align:justify;">'.$descripcion.'</p>';
 											$html .= '</div>';
 										$html .= '</div>';
