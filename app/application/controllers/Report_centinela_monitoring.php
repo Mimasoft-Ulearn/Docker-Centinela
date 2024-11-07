@@ -49,9 +49,21 @@ class Report_centinela_monitoring extends MY_Controller
         ### GENERAR REGISTRO EN LOGS_MODEL ###
         $this->Logs_model->add_log($this->login_user->client_id, NULL, NULL, NULL, 'Access_forecast');
 
-        $project = $this->Projects_model->get_one($air_sector->id_project);
+        $project = $this->Projects_model->get_one($this->session->project_context);
         $view_data["project_info"] = $project;
-        $view_data["iframe_src"] = "https://particulas.shinyapps.io/centinela_sulfuro_report/";
+
+        if ($project->id == 1) {
+            $view_data["iframe_src"] = 'https://particulas.shinyapps.io/centinela_oxe_report/';
+            log_message('error',"oxe");
+        } elseif ($project->id == 2) {
+            $view_data["iframe_src"] = 'https://particulas.shinyapps.io/centinela_met_report/';
+            log_message('error',"met");
+        } else {
+            $view_data["iframe_src"] = 'https://particulas.shinyapps.io/centinela_sulfuro_report/';
+            log_message('error',"sulfuro");
+        }
+
+        //$view_data["iframe_src"] = "https://particulas.shinyapps.io/centinela_sulfuro_report/";
 
         $this->template->rander("report_centinela/index", $view_data);
     }
