@@ -7,6 +7,17 @@
     </nav>
 
     <?php if($puede_ver != 3) { ?>
+        <!-- Project Map Section -->
+        <?php
+        $this->load->helper('project_maps');
+        $map_html = render_project_map($project_info->id);
+        if ($map_html): ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php echo $map_html; ?>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <div class="page-title clearfix mb20">
             <h1><i class="fa fa-industry" title=""></i> <?php echo lang('air_charts'); ?></h1>
@@ -135,7 +146,7 @@
       });
     }
 
-    // Cargar la 1era pestaña al cargarse la página
+    // Cargar la 1era pestaï¿½a al cargarse la pï¿½gina
     var id_station = <?php echo $stations[0]->id; ?>;
     if (firstLoad) {
       console.log('firstload')
@@ -143,13 +154,13 @@
       firstLoad = false;
     }
 
-    // Se ejecuta al presionar un tab correspondiente a una estación
+    // Se ejecuta al presionar un tab correspondiente a una estaciï¿½n
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       id_station = $(this).attr("id_station");
 
       let first_call = $('.charts_group_' + id_station).data('first_call');
 
-      // Solo se carga la pestaña la primera vez que se hace click en esta.
+      // Solo se carga la pestaï¿½a la primera vez que se hace click en esta.
       if (first_call) {
         console.log('segunda vez')
         console.log(id_station);

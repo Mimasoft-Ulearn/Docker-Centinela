@@ -477,7 +477,7 @@
                     ))->result();
                     $sidebar_menu[] = array("name" => "report_centinela", "url" => "report_centinela", "controller" => "report_centinela", "class" => "fa fa-check-square-o");
                     $sidebar_menu[] = array("name" => "report_monitoring", "url" => "report_centinela_monitoring", "controller" => "report_centinela_monitoring", "class" => "fa fa-check-square-o");
-                    $sidebar_menu[] = array("name" => "camera_forecasts","url"=> "camaras", "controller" => "camaras", "class" => "fa fa-camera");
+                    $sidebar_menu[] = array("name" => "camera_forecasts","url"=> CAMARAS_URL,"class" => "fa fa-camera","target" => "_blank");
 
                     // MÓDULO CONDICIONES METEOROLÓGICAS
 					$array_air_meteorological_conditions_submenu = array();
@@ -704,39 +704,62 @@
                 $devider_class = get_array_value($main_menu, "devider") ? "devider" : "";
                 $badge = get_array_value($main_menu, "badge");
                 $badge_class = get_array_value($main_menu, "badge_class");
+                $is_external_main = isset($main_menu['url']) && preg_match('/^https?:\/\//', trim($main_menu['url']));
+                $target_attr = isset($main_menu['target']) ? ' target="' . $main_menu['target'] . '"' : '';
                 ?>
-                <li class="<?php echo $active_class . " " . $expend_class . " " . $submenu_open_class . " $devider_class"; ?> main">
-                    <a href="<?php if(!isset($submenu)){echo_uri($main_menu['url']);}else{echo_uri($submenu["0"]["url"]);};?>">
-                        <i class="fa <?php echo ($main_menu['class']); ?>"></i>
-                        <span><?php echo lang($main_menu['name']); ?></span>
-                        <?php
-                        if ($badge) {
-                            echo "<span class='badge $badge_class'>$badge</span>";
-                        }
-                        ?>
-                    </a>
+            <li class="<?php echo $active_class . " " . $expend_class . " " . $submenu_open_class . " $devider_class"; ?> main">
+                <a href="<?php
+                if (!isset($submenu)) {
+                    echo $is_external_main ? $main_menu['url'] : echo_uri($main_menu['url']);
+                } else {
+                    echo echo_uri($submenu[0]['url']);
+                }
+                ?>"<?php echo $target_attr; ?>>
+                    <i class="fa <?php echo ($main_menu['class']); ?>"></i>
+                    <span><?php echo lang($main_menu['name']); ?></span>
                     <?php
+                    if ($badge) {
+                        echo "<span class='badge $badge_class'>$badge</span>";
+                    }
+                    ?>
+                </a>
+                <?php
                     if ($submenu) {
                         echo "<ul>";
                         foreach ($submenu as $s_menu) {
 
-							if($s_menu['controller'] == 'air_forecast_sectors'){
-								$active_submenu_class = active_submenu($s_menu['controller'], false, $s_menu["param"]);
-							} else {
-								$active_submenu_class = active_submenu($s_menu['controller'], true);
-							}
+                            if ($s_menu['controller'] == 'air_forecast_sectors') {
+                                $active_submenu_class = active_submenu($s_menu['controller'], false, $s_menu["param"]);
+                            } else {
+                                $active_submenu_class = active_submenu($s_menu['controller'], true);
+                            }
 
-                            
+                            // Depuración para verificar el contenido original de la URL
+
+
+                            // Verificar si la URL es externa
+                            $is_external = preg_match('/^https?:\/\//', trim($s_menu['url']));
+
+                            if ($is_external) {
+                                $url = $s_menu['url'];
+                                $target = ' target="_blank"';
+                            } else {
+                                $url = site_url($s_menu['url']);
+                                $target = '';
+                            }
+
+                            // Depuración para verificar las URLs
+
                             ?>
-                        <li class="<?php echo $active_submenu_class; ?>">
-                            <a href="<?php echo_uri($s_menu['url']); ?>">
-                                <i class="dot fa fa-circle"></i>
-								<span><?php echo (lang($s_menu['name'])) ? lang($s_menu['name']) : $s_menu['name']; ?></span>
-                            </a>
-                        </li>
-                        <?php
-                    }
-                    echo "</ul>";
+                            <li class="<?php echo $active_submenu_class; ?>">
+                                <a href="<?php echo $url; ?>"<?php echo $target; ?>>
+                                    <i class="dot fa fa-circle"></i>
+                                    <span><?php echo (lang($s_menu['name'])) ? lang($s_menu['name']) : $s_menu['name']; ?></span>
+                                </a>
+                            </li>
+                            <?php
+                        }
+                        echo "</ul>";
                 }
                 ?>
                 </li>

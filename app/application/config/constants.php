@@ -100,3 +100,5 @@ defined('CONST_ARRAY_NO_EYE3_STATIONS_API_CODE') OR define('CONST_ARRAY_NO_EYE3_
         4 => '2009'
     )
 );
+// DEFINICION DE URL CAMARAS
+defined('CAMARAS_URL') OR define('CAMARAS_URL', 'https://appstream2.us-east-1.aws.amazon.com/userpools#/signin?ref=73JEiK8o2m');

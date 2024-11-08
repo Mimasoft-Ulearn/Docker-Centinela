@@ -51,7 +51,9 @@ mysql/cron_test.log
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-
+node_modules/**
+node_modules
+pnpm-lock.yaml
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
