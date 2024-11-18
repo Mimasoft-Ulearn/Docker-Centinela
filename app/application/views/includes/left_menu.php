@@ -506,9 +506,9 @@
 						if($air_monitoring_records_option != 3){ // REGISTROS
 							$array_air_monitoring_submenu[] = array("name" => "air_records", "url" => "air_monitoring_data", "controller" => "air_monitoring_data");
 						}
-						if($air_monitoring_efficiency_option != 3){ // EFICIENCIA
+						/*if($air_monitoring_efficiency_option != 3){ // EFICIENCIA
 							$array_air_monitoring_submenu[] = array("name" => "air_efficiency", "url" => "air_monitoring_efficiency", "controller" => "air_monitoring_efficiency");
-						}
+						}*/
 					}
 
 					if( !($array_modulos[17] == 0)){
