@@ -90,7 +90,7 @@
 
                             <!-- DIV GRÁFICO 1 MINUTO -->
                             <div class="col-md-12">
-                                <div id="container_1min_<?php echo $id_station.'_'.$variable->id_variable; ?>" style="height: 400px; min-width: 310px; margin-bottom:100px;">
+                                <div id="container_1min_<?php echo $id_station.'_'.$variable->id_variable['nombre']; ?>" style="height: 400px; min-width: 310px; margin-bottom:100px;">
                                     <div style="padding:20px;"><div class="circle-loader"></div></div>
                                 </div>
                             </div>
@@ -407,7 +407,7 @@
                         }, 
 
                         title: {
-                            text: '<?php echo $variable->variable_name .' ('.$variable->sigla .')'?>'
+                            text: '<?php echo $variable->variable_name .' ('.$variable->sigla .')  '.$variable_unidad[$variable->id_variable]['nombre']  ?>'
                         },
                         credits: {
                             enabled: false
@@ -427,7 +427,7 @@
                             {
                                 labels: {
                                     formatter: function () {
-                                        return numberFormat(this.value, decimal_numbers, decimals_separator, thousands_separator) + ' <?php echo $variable_unidad[$variable->id_variable]['nombre'] ?>';
+                                        return numberFormat(this.value, decimal_numbers, decimals_separator, thousands_separator) ;
                                     }
                                 },
                                 lineColor: '#FF0000',
@@ -435,7 +435,7 @@
                             }, {
                                 labels: {
                                     formatter: function () {
-                                        return numberFormat(this.value, decimal_numbers, decimals_separator, thousands_separator) + ' <?php echo $variable_unidad[$variable->id_variable]['nombre'] ?>';
+                                        return numberFormat(this.value, decimal_numbers, decimals_separator, thousands_separator);
                                     }
                                 },
                                 lineColor: '#FF0000',
