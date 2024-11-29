@@ -91,7 +91,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 //$project_ambient_id = NULL;
 
 // Estaciones Com, Hotel Mina, Chacay, Cuncumen
-defined('CONST_ARRAY_NO_EYE3_STATIONS_IDS') OR define('CONST_ARRAY_NO_EYE3_STATIONS_IDS',array(1, 2, 3, 4, 5, 6));
+defined('CONST_ARRAY_NO_EYE3_STATIONS_IDS') OR define('CONST_ARRAY_NO_EYE3_STATIONS_IDS',array(0));
 defined('CONST_ARRAY_NO_EYE3_STATIONS_API_CODE') OR define('CONST_ARRAY_NO_EYE3_STATIONS_API_CODE', 
     array(
         1 => '2023',

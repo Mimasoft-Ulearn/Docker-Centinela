@@ -135,8 +135,8 @@ class Air_monitoring_data extends MY_Controller {
 
 		$stations_dropdown = array();
 		foreach ($air_stations as $station) {
-			// Si la estación no es una estación de Eye3 no se muestra
-			if (in_array($station->id, CONST_ARRAY_NO_EYE3_STATIONS_IDS)) {
+
+			if (in_array($station->id)) {
 				continue;
 			}
 			$stations_dropdown[$station->id] = $station->name;

@@ -1,6 +1,5 @@
 <ul class="nav nav-tabs" role="tablist">
 
-
         <li class="active">
             <a data-toggle="tab" href="#tab_1_min_<?php echo $id_station; ?>"><?php echo lang("records_per_minute"); ?></a>
         </li>
@@ -104,7 +103,7 @@
 
 
         <!-- PESTAÑA DE REGISTROS CADA 5 MINUTOS -->
-        <div id="tab_5_min_<?php echo $id_station; ?>" class="tab-pane fade in <?php echo ($id_station == 9 || $id_station == 16) ? "active" : ""; ?>">
+        <div id="tab_5_min_<?php echo $id_station; ?>" class="tab-pane fade in">
             
             <div class="col-md-12 p0">
                 <div class="panel panel-default mb15">
@@ -455,7 +454,7 @@
                                 return [texto_fecha].concat(
                                     this.points ?
                                         this.points.map(function (point) {
-                                            return  '<b><span>' + point.series.name + ':</span></b> ' + '<span>' + numberFormat(point.y, decimal_numbers, decimals_separator, thousands_separator) + ' (<?php echo $variable_unidad[$variable->id_variable]['nombre'] ?>)' + '</span><br>';
+                                            return  '<b><span>' + point.series.name + ':</span></b> ' + '<span>' + numberFormat(point.y, decimal_numbers, decimals_separator, thousands_separator) + '</span><br>';
                                         }) : []
                                 );
 

@@ -1,7 +1,7 @@
 <?php if($view_1min || $view_5min || $view_15min || $view_1hour){ ?>
 	
 	<ul class="nav nav-tabs" role="tablist">
-		<?php if($id_station == 5 || $id_station == 6 || $id_station == 7 || $id_station == 11){ ?>
+
 			
 			<li class="<?php if($view_1min){ ?> active <?php } ?>">
 				<a data-toggle="tab" href="#tab_1_min"><?php echo lang("records_per_minute"); ?></a>
@@ -18,24 +18,8 @@
 			<li class="<?php if(!$view_1min && !$view_5min && !$view_15min && $view_1hour){ ?> active <?php } ?>">
 				<a data-toggle="tab" href="#tab_1_hour"><?php echo lang("records_per_1_hour"); ?></a>
 			</li>
-		<?php } else { ?>
-			<!-- 
-			<li class="<?php if($view_1min){ ?> active <?php } ?>">
-				<a data-toggle="tab" href="#tab_1_min"><?php echo lang("records_per_minute"); ?></a> 
-			</li>
-			-->
-			<li class="<?php if(!$view_1min && $view_5min){ ?> active <?php } ?>">
-				<a data-toggle="tab" href="#tab_5_min"><?php echo lang("records_per_5_minutes"); ?></a>
-			</li>
 
-			<li class="<?php if(!$view_1min && !$view_5min && $view_15min){ ?> active <?php } ?>">
-				<a data-toggle="tab" href="#tab_15_min"><?php echo lang("records_per_15_minutes"); ?></a>
-			</li>
 
-			<li class="<?php if(!$view_1min && !$view_5min && !$view_15min && $view_1hour){ ?> active <?php } ?>">
-				<a data-toggle="tab" href="#tab_1_hour"><?php echo lang("records_per_1_hour"); ?></a>
-			</li>
-		<?php } ?>
 	</ul>
 
 	<div role="tabpanel" class="tab-pane fade active in" id="" style="min-height: 200px;">
