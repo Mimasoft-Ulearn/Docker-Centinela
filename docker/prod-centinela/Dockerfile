@@ -41,33 +41,10 @@ COPY --chown=www-data:www-data ./app /var/www/html
 RUN find /var/www/html -type d -exec chmod 755 {} \; && \
     find /var/www/html -type f -exec chmod 644 {} \;
 
-# Customizamos el php.ini para que deje usar mas recursos
-RUN { \
-echo 'memory_limit=2048M'; \
-echo 'upload_max_filesize=100M'; \
-echo 'post_max_size=500M'; \
-echo 'max_execution_time=600'; \
-echo 'data.timezone=America/Santiago'; \
-} > /usr/local/etc/php/conf.d/custom.ini && \
-{ \
-echo '[global]'; \
-echo 'error_log = /proc/self/fd/2'; \
-echo '[www]'; \
-echo 'listen = 9000'; \
-echo 'pm = dynamic'; \
-echo 'pm.max_children = 120'; \
-echo 'pm.start_servers = 2'; \
-echo 'pm.min_spare_servers = 1'; \
-echo 'pm.max_spare_servers = 3'; \
-echo 'user = www-data'; \
-echo 'group = www-data'; \
-} > /usr/local/etc/php-fpm.d/www.conf  &&  \
-{ \
-echo '[xdebug]'; \
-echo 'xdebug.mode = debug'; \
-echo 'xdebug.start_with_request = yes'; \
-echo 'xdebug.client_host = host.docker.internal'; \
-} > /usr/local/etc/php/conf.d/xdebug.ini
+# PHP Configuraciones
+COPY php.ini /usr/local/etc/php/conf.d/custom.ini
+COPY www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 EXPOSE 9000
 CMD ["php-fpm"]
