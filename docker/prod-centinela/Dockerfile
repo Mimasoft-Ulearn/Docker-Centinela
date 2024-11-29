@@ -39,8 +39,13 @@ RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 # Copiar la aplicación al contenedor y ajustar permisos
 COPY --chown=www-data:www-data ./app /var/www/html
 RUN find /var/www/html -type d -exec chmod 755 {} \; && \
-    find /var/www/html -type f -exec chmod 644 {} \;
+    find /var/www/html -type f -exec chmod 644 {} \; \
 
+# Crear directorios de logs
+RUN mkdir -p /var/log/php-fpm && \
+    touch /var/log/php-fpm/slowlog.log && \
+    touch /var/log/php-fpm/www.access.log && \
+    chown -R www-data:www-data /var/log/php-fpm
 # PHP Configuraciones
 COPY php.ini /usr/local/etc/php/conf.d/custom.ini
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
