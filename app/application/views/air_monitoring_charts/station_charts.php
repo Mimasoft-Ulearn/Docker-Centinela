@@ -1,11 +1,12 @@
 <ul class="nav nav-tabs" role="tablist">
 
+    <?php if($id_station != 9 && $id_station != 16){ ?>
         <li class="active">
             <a data-toggle="tab" href="#tab_1_min_<?php echo $id_station; ?>"><?php echo lang("records_per_minute"); ?></a>
         </li>
+    <?php } ?>
 
-    
-    <li >
+    <li class="<?php echo ($id_station == 9 || $id_station == 16) ? "active" : ""; ?>">
         <a data-toggle="tab" href="#tab_5_min_<?php echo $id_station; ?>"><?php echo lang("records_per_5_minutes"); ?></a>
     </li>
 
@@ -25,7 +26,7 @@
 
         <!-- PESTAÑA DE REGISTROS CADA 1 MINUTO -->
 
-
+        <?php if($id_station != 9 && $id_station != 16){ ?>
 
         <div id="tab_1_min_<?php echo $id_station; ?>" class="tab-pane fade in active">
             <div class="col-md-12 p0">
@@ -89,7 +90,7 @@
 
                             <!-- DIV GRÁFICO 1 MINUTO -->
                             <div class="col-md-12">
-                                <div id="container_1min_<?php echo $id_station.'_'.$variable->id_variable['nombre']; ?>" style="height: 400px; min-width: 310px; margin-bottom:100px;">
+                                <div id="container_1min_<?php echo $id_station.'_'.$variable->id_variable; ?>" style="height: 400px; min-width: 310px; margin-bottom:100px;">
                                     <div style="padding:20px;"><div class="circle-loader"></div></div>
                                 </div>
                             </div>
@@ -100,10 +101,10 @@
                 </div>
             </div>
         </div>
-
+        <?php } ?>
 
         <!-- PESTAÑA DE REGISTROS CADA 5 MINUTOS -->
-        <div id="tab_5_min_<?php echo $id_station; ?>" class="tab-pane fade in">
+        <div id="tab_5_min_<?php echo $id_station; ?>" class="tab-pane fade in <?php echo ($id_station == 9 || $id_station == 16) ? "active" : ""; ?>">
             
             <div class="col-md-12 p0">
                 <div class="panel panel-default mb15">
@@ -180,8 +181,6 @@
             </div>
 
         </div>
-
-
 
         <!-- PESTAÑA DE REGISTROS CADA 15 MINUTOS -->
         <div id="tab_15_min_<?php echo $id_station; ?>" class="tab-pane fade in">
@@ -361,8 +360,7 @@
 
         // Dentro de este loop se crean los gráficos, funciones para filtrar por fecha y para actualizar los gráficos cada 1 minuto. Esto es para cada "frecuencia" y variable.
         <?php foreach($array_charts_data as $time_range => $chart_data) { ?>
-
-
+            <?php if ( ($id_station == 9 || $id_station == 16) && $time_range == "1min") { continue; } ?>
 
             <?php foreach($station_variables as $variable){ ?>
 
@@ -384,7 +382,16 @@
 
                     // CREAR GRÁFICO para la variable y frecuencia de tiempo correspondiente. Se almacena en una variable para poder manipularlo
                     const chart_<?php echo $compound_id; ?> = new Highcharts.stockChart('container_<?php echo $compound_id; ?>',{
-                        
+                        // chart: {
+                        //     animation: false,  // Evita animaciones que pueden causar problemas de renderizado
+                        //     reflow: true,
+                        //     events: {
+                        //         load: function() {
+                        //             // Guardamos los datos originales al cargar
+                        //             this.originalData = this.series[0].data.slice();
+                        //         }
+                        //     }
+                        // },
                         rangeSelector: {
                             // selected:1,
                             enabled: false
@@ -414,6 +421,7 @@
 
                         xAxis: {
                             type: 'datetime',
+                            ordinal : false,
                             labels:{
                                 formatter:function(){
                                     var date = new Date(this.value);
@@ -421,8 +429,18 @@
                                     return fecha_f;
                                 },
                                 rotation: -22
+                            },
+                        },
+                        plotOptions: {
+                            series: {
+                                dataGrouping: {
+                                    enabled: false  // Deshabilitamos el agrupamiento de datos
+                                },
+                                animation: false,
+                                turboThreshold: 0  // Evita el submuestreo de datos
                             }
-                        },yAxis: [
+                        },
+                        yAxis: [
                             {
                                 labels: {
                                     formatter: function () {
@@ -445,6 +463,7 @@
                         ],
 
                         tooltip: {
+
                             //crosshairs: [true, true],
                             formatter: function() {
 
@@ -464,12 +483,14 @@
                             },*/
                             useHTML: true,
                             // valueDecimals: 2,
-                            split: true
+                            split: false,
+                            snap :0,
                         },
 
                         legend: false,
 
-                        series: [<?php echo json_encode($chart_data[$variable->id_variable]); ?>]
+                        series: [<?php echo json_encode($chart_data[$variable->id_variable]); ?>],
+
                     });
 
                     /*  BOTON APLICAR: Evento para aplicar filtro de rango de fechas. 
@@ -602,8 +623,10 @@
 
         /// Al presionar una pestaña se debe ejecutar el evento resize() para que highchart calcule correctamente el tamaño del gráfico que debe mostrar.
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            // $(window).resize();
-            var evt = document.createEvent("HTMLEvents"); evt.initEvent("resize", false, true);  window.dispatchEvent(evt);
+            $(window).resize();
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("resize", false, true);
+            window.dispatchEvent(evt);
         });
 
 
